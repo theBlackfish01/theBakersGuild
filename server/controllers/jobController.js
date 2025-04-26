@@ -1,6 +1,6 @@
-const JobPost = require("../models/jobpost");
-const Company = require("../models/company");
-const Developer = require("../models/dev");
+const JobPost = require("../models/recipePost");
+const Company = require("../models/baker");
+const Developer = require("../models/Novice");
 const User = require("../models/user");
 
 //creating a new job post

@@ -38,7 +38,7 @@ import {
     Snackbar,
 } from "@mui/joy";
 
-export default function CompanyProfileSettings() {
+export default function BakerProfileSettings() {
     const location = useLocation()
     const userId = location.state.userId
     // Form fields (new)

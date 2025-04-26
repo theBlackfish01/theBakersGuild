@@ -179,15 +179,14 @@ export default function Login() {
                 <Grid
                     item
                     xs={6}
-                    sx={{ backgroundColor: "#bcbcbc", maxHeight: "100%" }}
+                    sx={{ backgroundColor: "#4E342E", maxHeight: "100%" }}
                 >
-                    {/*Background column, set to loginBackgroun  of available height and width, crop the rest*/}
                     <img
                         src={loginBackground}
                         alt="loginBackground"
                         style={{
                             width: "100%",
-                            height: "99.52vh",
+                            height: "99.5vh",
                             objectFit: "cover",
                         }}
                     />

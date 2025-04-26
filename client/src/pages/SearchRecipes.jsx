@@ -30,14 +30,14 @@ import jobSearchIcon from "../assets/jobSearchIcon.svg";
 import sortIcon from "../assets/sortIcon.svg";
 
 // Custom Components Imports
-import DevNavbar from "../components/DevNavbar";
-import DevJobCard from "../components/DevJobCard";
+import GuestNavbar from "../components/GuestNavbar.jsx";
+import GuestRecipeCard from "../components/GuestRecipeCard.jsx";
 import Footer from "../components/Footer";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../routes.js";
 
-export default function SearchJobs() {
+export default function SearchRecipes() {
     // User input states
     const [searchQuery, setSearchQuery] = useState("");
     const [skills, setSkills] = useState([]);
@@ -255,7 +255,7 @@ export default function SearchJobs() {
 
     return (
         <>
-            <DevNavbar currentPage="search" />
+            <GuestNavbar currentPage="search" />
             <Stack spacing={0}>
                 {/* Gray Section */}
                 <Grid
@@ -495,7 +495,7 @@ export default function SearchJobs() {
                         {/* Job Cards */}
                         <Stack spacing={2}>
                             {jobs.map((job) => (
-                                <DevJobCard
+                                <GuestRecipeCard
                                     key={job.id}
                                     job={job}
                                     userId={userId}

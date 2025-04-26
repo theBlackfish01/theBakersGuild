@@ -10,8 +10,8 @@ import { apiRoutes } from "../../routes";
 import { Typography, Button, Stack, Chip, Grid, Snackbar } from "@mui/joy";
 
 // Component Imports
-import CompanyNavbar from "../../components/CompanyNavbar";
-import JobApplications from "../../components/JobApplications";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
+import RecipeApplications from "../../components/RecipeApplications.jsx";
 import Footer from "../../components/Footer";
 
 // Custom Assets Imports
@@ -29,7 +29,7 @@ const formatCompenstation = (compensation) => {
     return `~ ${USDollar.format(compensation)}/yr`;
 };
 
-export default function CompanyIndividualJobNew() {
+export default function BakerIndividualRecipeNew() {
     const [closeJob, setCloseJob] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -85,7 +85,7 @@ export default function CompanyIndividualJobNew() {
 
     return (
         <>
-            <CompanyNavbar />
+            <BakerNavbar />
             <Stack spacing={0}>
                 {/* Hero Section */}
                 <Grid
@@ -445,7 +445,7 @@ export default function CompanyIndividualJobNew() {
                 {success ? "Job closed successfully." : error}
             </Snackbar>
             {/* Job Applications Management */}
-            <JobApplications job={job} />
+            <RecipeApplications job={job} />
             <Footer />
         </>
     );

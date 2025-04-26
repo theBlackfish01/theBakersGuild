@@ -15,7 +15,7 @@ import {
 
 // Custom components
 import Footer from "../../components/Footer.jsx";
-import Navbar from "../../components/DevNavbar.jsx";
+import Navbar from "../../components/GuestNavbar.jsx";
 
 // UI imports
 import {

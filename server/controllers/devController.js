@@ -1,5 +1,5 @@
-const Dev = require("../models/dev");
-const JobPost = require("../models/jobpost")
+const Dev = require("../models/Novice");
+const JobPost = require("../models/recipePost")
 
 // TODO
 const devRegister = async (req, res) => {

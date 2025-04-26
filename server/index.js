@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const testRouter = require("./routes/testRoute");  // For testing only
 const userRouter = require("./routes/authRoute");
-const companyRouter = require("./routes/companyRoute");
+const bakerRouter = require("./routes/bakerRoute");
 const devRouter = require("./routes/devRoute");
 const jobRouter = require("./routes/jobRoute");
-const aiRouter = require("./routes/aiRoute.js");
 const cookieParser = require("cookie-parser");
 const { errorMiddleware } = require("./middlewares/Error.js");
 require("dotenv").config(); // Load environment variables
@@ -37,7 +36,7 @@ app.use(
 app.use("/user", userRouter);
 
 // Handling Company Routes
-app.use("/baker", companyRouter);
+app.use("/baker", bakerRouter);
 
 // Handling Developer Routes
 app.use("/usr", devRouter);
@@ -47,9 +46,6 @@ app.use("/job", jobRouter);
 
 // Handling Test Routes
 app.use("/test", testRouter);
-
-// AI features
-app.use("/ai", aiRouter)
 
 
 // Using Error Middleware

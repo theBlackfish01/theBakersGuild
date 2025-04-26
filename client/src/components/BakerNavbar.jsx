@@ -20,7 +20,7 @@ import {
 } from "@mui/joy";
 
 
-export default function CompanyNavbar({ currentPage }) {
+export default function BakerNavbar({ currentPage }) {
   // navigation
   const navigate = useNavigate();
   const { logout } = useLogout()

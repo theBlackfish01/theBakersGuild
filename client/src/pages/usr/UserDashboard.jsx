@@ -6,8 +6,8 @@ import axios from "axios";
 import { Grid, Typography, Button, Stack, Badge, Alert } from "@mui/joy";
 
 // Custom Components Imports
-import DevNavbar from "../../components/DevNavbar.jsx";
-import DevJobCard from "../../components/DevJobCard.jsx";
+import GuestNavbar from "../../components/GuestNavbar.jsx";
+import GuestRecipeCard from "../../components/GuestRecipeCard.jsx";
 import Footer from "../../components/Footer.jsx";
 
 // Routes Import
@@ -91,7 +91,7 @@ export default function UserDashboard() {
 
     return (
         <>
-            <DevNavbar currentPage="dashboard" />
+            <GuestNavbar currentPage="dashboard" />
             <Grid
                 container
                 sx={{
@@ -207,7 +207,7 @@ export default function UserDashboard() {
                     {activeTab === "All" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <DevJobCard
+                                <GuestRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -223,7 +223,7 @@ export default function UserDashboard() {
                     {activeTab === "Bookmarked" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <DevJobCard
+                                <GuestRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -239,7 +239,7 @@ export default function UserDashboard() {
                     {activeTab === "Applied" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <DevJobCard
+                                <GuestRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -256,7 +256,7 @@ export default function UserDashboard() {
                     {activeTab === "Job Offers" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <DevJobCard
+                                <GuestRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}

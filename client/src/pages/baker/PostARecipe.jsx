@@ -13,7 +13,7 @@ import {
 } from "../../globalConstants.js";
 
 // Custom components
-import CompanyNavbar from "../../components/CompanyNavbar.jsx";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
 import Footer from "../../components/Footer.jsx";
 
 // UI imports
@@ -37,7 +37,7 @@ import {
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
-export default function PostAJob() {
+export default function PostARecipe() {
     // form fields state
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -195,7 +195,7 @@ export default function PostAJob() {
 
   return (
     <>
-      <CompanyNavbar currentPage="postJob" />
+      <BakerNavbar currentPage="postJob" />
       <Grid
         container
         sx={{

@@ -23,7 +23,7 @@ import {
     Alert,
 } from "@mui/joy";
 
-export default function JobApplications({ job }) {
+export default function RecipeApplications({ job }) {
     const [activeTab, setActiveTab] = useState("All");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

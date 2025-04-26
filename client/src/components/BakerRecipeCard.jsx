@@ -57,7 +57,7 @@ const calculateTimeAgo = (date) => {
     }
 };
 
-const CompanyJobCard = ({
+const BakerRecipeCard = ({
     userId,
     myJob,
     setOpenPinnedJobs,
@@ -462,4 +462,4 @@ const CompanyJobCard = ({
     );
 };
 
-export default CompanyJobCard;
+export default BakerRecipeCard;

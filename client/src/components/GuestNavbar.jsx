@@ -20,7 +20,7 @@ import {
 
 import { clientRoutes } from "../routes.js";
 
-export default function DevNavbar({ currentPage }) {
+export default function GuestNavbar({ currentPage }) {
     // navigation
     const navigate = useNavigate();
     const location = useLocation();

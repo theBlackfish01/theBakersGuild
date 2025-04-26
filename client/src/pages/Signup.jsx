@@ -469,12 +469,14 @@ const Signup = () => {
                     </Grid>
                 </Grid>
                 {/* Background Column */}
-                <Grid item xs={6} sx={{ p: 0 }} margin={0}>
+                <Grid item xs={6} sx={{backgroundColor: "#4E342E",  p: 0 }} margin={0}>
                     <img
                         src={signupBackground}
                         alt="signupBackground"
                         style={{
-                            objectFit: "fill",
+                            width: "100%",
+                            height: "110vh",
+                            objectFit: "cover",
                         }}
                     />
                 </Grid>

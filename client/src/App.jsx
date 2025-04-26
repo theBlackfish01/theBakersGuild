@@ -5,17 +5,17 @@ import { clientRoutes } from "./routes.js";
 
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
-import CompanyProfileSetup from "./pages/baker/CompanyProfileSetup.jsx";
+import BakerProfileSetup from "./pages/baker/BakerProfileSetup.jsx";
 import UserProfileSetup from "./pages/usr/UserProfileSetup.jsx";
-import CompanyDashboard from "./pages/baker/CompanyDashboard.jsx";
+import BakerDashboard from "./pages/baker/BakerDashboard.jsx";
 import UserDashboard from "./pages/usr/UserDashboard.jsx";
-import PostAJob from "./pages/baker/PostAJob.jsx";
-import SearchJobs from "./pages/SearchJobs.jsx";
-import DevIndividualJob from "./pages/usr/DevIndividualJob.jsx";
+import PostARecipe from "./pages/baker/PostARecipe.jsx";
+import SearchRecipes from "./pages/SearchRecipes.jsx";
+import UserIndividualRecipe from "./pages/usr/UserIndividualRecipe.jsx";
 import UserSettings from "./pages/usr/UserSettings.jsx";
-import CompanySettings from "./pages/baker/CompanySettings.jsx";
-import JobPostPage from "./pages/baker/CompanyIndividualJob.jsx";
-import CompanyIndividualJobNew from "./pages/baker/CompanyIndividualJobNew.jsx";
+import BakerSettings from "./pages/baker/BakerSettings.jsx";
+import JobPostPage from "./pages/baker/BakerIndividualJob.jsx";
+import BakerIndividualRecipeNew from "./pages/baker/BakerIndividualRecipeNew.jsx";
 import { useAuthContext } from "./components/useAuthContext.jsx";
 
 // Experimenting with themes
@@ -70,23 +70,23 @@ function App() {
             <>
               <Route path={clientRoutes.signup} element={<Signup />} />
               <Route path={clientRoutes.login} element={<Login />} />
-              <Route path="*" element={<Navigate to={clientRoutes.login} />} /> {/* Add this line */}
+              <Route path="*" element={<Navigate to={clientRoutes.login} />} />
               
             </>
           )}
 
             {user && (
               <>
-                <Route path={clientRoutes.companyProfileSetup} element={<CompanyProfileSetup />} />
+                <Route path={clientRoutes.companyProfileSetup} element={<BakerProfileSetup />} />
                 <Route path={clientRoutes.devProfileSetup} element={<UserProfileSetup />} />
-                <Route path={clientRoutes.companyDashboard} element={<CompanyDashboard />} />
+                <Route path={clientRoutes.companyDashboard} element={<BakerDashboard />} />
                 <Route path={clientRoutes.devDashboard} element={<UserDashboard />} />
-                <Route path={clientRoutes.devIndividualJob} element={<DevIndividualJob />} />
-                <Route path={clientRoutes.companyIndividualJob} element={<CompanyIndividualJobNew />} />
-                <Route path={clientRoutes.postAJob} element={<PostAJob />} />
-                <Route path={clientRoutes.searchJobs} element={<SearchJobs />} />
+                <Route path={clientRoutes.devIndividualJob} element={<UserIndividualRecipe />} />
+                <Route path={clientRoutes.companyIndividualJob} element={<BakerIndividualRecipeNew />} />
+                <Route path={clientRoutes.postAJob} element={<PostARecipe />} />
+                <Route path={clientRoutes.searchJobs} element={<SearchRecipes />} />
                 <Route path={clientRoutes.devSettings} element={<UserSettings />} />
-                <Route path={clientRoutes.companySettings} element={<CompanySettings />} />
+                <Route path={clientRoutes.companySettings} element={<BakerSettings />} />
                 <Route path={clientRoutes.signup} element={<Signup />} />
                 <Route path={clientRoutes.login} element={<Login />} />
               </>

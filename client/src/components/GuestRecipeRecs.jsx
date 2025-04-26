@@ -33,7 +33,7 @@ import {
     Avatar,
 } from "@mui/joy";
 
-export default function DevJobRecs() {
+export default function GuestRecipeRecs() {
     // View All Jobs Handler
     const navigate = useNavigate();
     const location = useLocation()

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Typography, Stack, Grid, Button } from "@mui/joy";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 // // // // import { CalendarToday, PeopleAltSharp, CodeOff, Code } from "@mui/icons-material";
-import CompanyNavbar from "../../components/CompanyNavbar";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
 import ApplicantCard from "../../components/ApplicantCard";
 import Footer from "../../components/Footer";
 
-const JobPostPage = () => {
+const RecipePostPage = () => {
   // Sample job data
   const job = {
     title: "Full Stack Developer",
@@ -49,7 +49,7 @@ const JobPostPage = () => {
 
   return (
     <>
-      <CompanyNavbar currentPage="JobPost" />
+      <BakerNavbar currentPage="RecipePost" />
       {/* This paragraph is for spacing, other methods were not working */}
       <p> </p>
       <Grid container justifyContent="center">
@@ -222,4 +222,4 @@ const JobPostPage = () => {
   );
 };
 
-export default JobPostPage;
+export default RecipePostPage;

@@ -1,4 +1,4 @@
-import JobPost from "./pages/baker/CompanyIndividualJob";
+import JobPost from "./pages/baker/BakerIndividualJob.jsx";
 
 const apiRoutes = {
   // User Routes

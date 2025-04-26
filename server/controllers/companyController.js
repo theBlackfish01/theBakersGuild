@@ -1,5 +1,5 @@
-const Company = require("../models/company");
-const JobPost = require("../models/jobpost");
+const Baker = require("../models/baker");
+const JobPost = require("../models/recipePost");
 const user_applicant = require("../models/user")
 
 
@@ -21,7 +21,7 @@ const companyRegister = async (req, res) => {
     } = req.body;
 
     // Create a new baker instance
-    const newCompany = new Company({
+    const newCompany = new Baker({
       userId,
       name: companyName,
       website,
@@ -39,7 +39,7 @@ const companyRegister = async (req, res) => {
 
     // Send a success response with the ObjectId of the created baker
     res.status(201).json({
-      message: "Company created successfully",
+      message: "Baker created successfully",
       companyId: savedCompany._id,
     });
   } catch (error) {
@@ -64,7 +64,7 @@ const companyEdit = async (req, res) => {
     userId
   } = req.body;
   try {
-    const updatedCompany = await Company.findOneAndUpdate(
+    const updatedCompany = await Baker.findOneAndUpdate(
       { userId: userId }, // Filter: Find the baker by its ID
       {
         name: companyName,
@@ -82,7 +82,7 @@ const companyEdit = async (req, res) => {
 
     // If the baker doesn't exist, return 404
     if (!updatedCompany) {
-      return res.status(404).json({ error: "Company not found" });
+      return res.status(404).json({ error: "Baker not found" });
     }
 
     res.status(200).json(updatedCompany);
@@ -95,12 +95,12 @@ const getMyJobs = async (req, res) => {
   // TODO: Get the jobs from the baker's myJobs array
   const { userId } = req.params;
   try {
-    const company = await Company.findOne({ userId: userId }).populate({
+    const company = await Baker.findOne({ userId: userId }).populate({
       path: 'myJobs.job',
       populate: { path: 'postedBy' }
     });
     if (!company) {
-      return res.status(404).json({ error: "Company not found" });
+      return res.status(404).json({ error: "Baker not found" });
     }
     const openPinnedJobs = company.myJobs.filter(myJob => myJob.job.status === 'open' && myJob.job.isPinned);
     const openJobs = company.myJobs.filter(myJob => myJob.job.status === 'open' && !myJob.job.isPinned);
@@ -120,9 +120,9 @@ const updateBookmark = async (req, res) => {
   // TODO: Update the bookmark in the baker's myJobs array
   const { userId, myJobId, isPinned, pinnedAt } = req.body;
   try {
-    const company = await Company.findOne({ userId: userId });
+    const company = await Baker.findOne({ userId: userId });
     if (!company) {
-      return res.status(404).json({ error: "Company not found" });
+      return res.status(404).json({ error: "Baker not found" });
     }
     const myJob = company.myJobs.find(job => job._id.toString() === myJobId);
     if (!myJob) {
@@ -138,13 +138,13 @@ const updateBookmark = async (req, res) => {
   }
 };
 
-const getCompany = async (req, res) => {
+getCompany = async (req, res) => {
   const {userId} = req.query;
   try {
-    //const baker = await Company.findById(companyId);
-    const company = await Company.findOne({ userId: userId });
+    //const baker = await Baker.findById(companyId);
+    const company = await Baker.findOne({ userId: userId });
     if (!company) {
-      return res.status(404).json({ message: 'Company not found' });
+      return res.status(404).json({ message: 'Baker not found' });
     }
     res.status(200).json(company);
   } catch (error) {
@@ -157,7 +157,7 @@ const deleteCompany = async (req, res) => {
     
     try{
       // Use findByIdAndDelete to find and delete the user by id
-      const deletedCompany = await Company.findOneAndDelete({userId: userId});
+      const deletedCompany = await Baker.findOneAndDelete({userId: userId});
       
       if (!deletedCompany) {
         // If no user found with the given id, return appropriate message or handle accordingly
@@ -232,4 +232,3 @@ const getApplicants = async (req, res) => {
 
 
 module.exports = { companyRegister, companyEdit, getMyJobs, updateBookmark, getCompany, deleteCompany,getApplicants };
-

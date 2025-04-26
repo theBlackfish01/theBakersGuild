@@ -25,7 +25,7 @@ import {
     Snackbar,
 } from "@mui/joy";
 
-export default function DevApplyJob(props) {
+export default function GuestApplyJob(props) {
     const [open, setOpen] = useState(false);
     const [coverLetter, setCoverLetter] = useState("");
     const [submitLoading, setSubmitLoading] = useState(false);

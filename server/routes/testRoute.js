@@ -3,9 +3,9 @@ const testRouter = express.Router();
 
 // models
 const User = require("../models/User");
-const Dev = require("../models/dev");
-const Company = require("../models/company");
-const Job = require("../models/jobpost");
+const Dev = require("../models/Novice");
+const Company = require("../models/baker");
+const Job = require("../models/recipePost");
 
 // CAUTION !!!
 

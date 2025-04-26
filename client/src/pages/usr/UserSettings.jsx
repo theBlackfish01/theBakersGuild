@@ -6,8 +6,8 @@ import axios from "axios";
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
 // Components Import
-import DevNavbar from "../../components/DevNavbar.jsx";
-import DevProfileSettings from "../../components/DevProfileSettings.jsx";
+import GuestNavbar from "../../components/GuestNavbar.jsx";
+import GuestProfileSettings from "../../components/GuestProfileSettings.jsx";
 import ChangePassword from "../../components/ChangePassword.jsx";
 import DeleteAccount from "../../components/DeleteAccount.jsx";
 import Footer from "../../components/Footer.jsx";
@@ -26,7 +26,7 @@ export default function UserSettings() {
 
     return (
         <>
-            <DevNavbar currentPage={"settings"} />
+            <GuestNavbar currentPage={"settings"} />
             <Grid
                 container
                 xs={12}
@@ -126,7 +126,7 @@ export default function UserSettings() {
                 </Grid>
                 {/* Main Content */}
                 <Grid item md={6}>
-                    {activeTab === "Profile" && <DevProfileSettings userId = {userId}/>}
+                    {activeTab === "Profile" && <GuestProfileSettings userId = {userId}/>}
                     {activeTab === "Change Password" && <ChangePassword userId = {userId}/>}
                     {activeTab === "Delete Account" && <DeleteAccount userId = {userId}/>}
                 </Grid>

@@ -3,7 +3,7 @@ import { Typography, Stack, Grid , Button} from "@mui/joy";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { CalendarToday, PeopleAltSharp, CodeOff, Code } from "@mui/icons-material";
 import CircularProgress from '@mui/material/CircularProgress';
-import CompanyNavbar from "../../components/CompanyNavbar";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
 import ApplicantCard from "../../components/ApplicantCard";
 import Footer from "../../components/Footer";
 import axios from "axios";
@@ -78,7 +78,7 @@ const JobPostPage = () => {
 
     return (
         <>
-            <CompanyNavbar currentPage="JobPost" />
+            <BakerNavbar currentPage="RecipePost" />
             {/* This paragraph is for spacing, other methods were not working */}
             <p> </p>
             <Grid container justifyContent="center">

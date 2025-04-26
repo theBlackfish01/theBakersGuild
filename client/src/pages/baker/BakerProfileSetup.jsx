@@ -33,7 +33,7 @@ import {
 
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
-export default function CompanyProfileSetup() {
+export default function BakerProfileSetup() {
   // State to control the visibility of form sections
   const [currentStep, setCurrentStep] = useState(1);
 

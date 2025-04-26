@@ -13,14 +13,14 @@ import {
 } from "@mui/joy";
 
 // Custom Components Imports
-import CompanyNavbar from "../../components/CompanyNavbar";
-import CompanyJobCard from "../../components/CompanyJobCard";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
+import BakerRecipeCard from "../../components/BakerRecipeCard.jsx";
 import Footer from "../../components/Footer";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
-export default function CompanyDashboard() {
+export default function BakerDashboard() {
     // navigation
     const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ export default function CompanyDashboard() {
 
     return (
         <>
-            <CompanyNavbar currentPage="dashboard" />
+            <BakerNavbar currentPage="dashboard" />
             <Grid
                 container
                 sx={{
@@ -194,7 +194,7 @@ export default function CompanyDashboard() {
                         <>
                             <Stack spacing={2} mt={4}>
                                 {openJobs.map((myJob, index) => (
-                                    <CompanyJobCard
+                                    <BakerRecipeCard
                                         key={index}
                                         userId={userId}
                                         myJob={myJob}
@@ -204,7 +204,7 @@ export default function CompanyDashboard() {
                                     />
                                 ))}
                                 {closedJobs.map((myJob, index) => (
-                                    <CompanyJobCard key={index} myJob={myJob} />
+                                    <BakerRecipeCard key={index} myJob={myJob} />
                                 ))}
                             </Stack>
                         </>
@@ -214,7 +214,7 @@ export default function CompanyDashboard() {
                         <>
                             <Stack spacing={2} mt={4}>
                                 {openJobs.map((myJob, index) => (
-                                    <CompanyJobCard
+                                    <BakerRecipeCard
                                         key={index}
                                         userId={userId}
                                         myJob={myJob}
@@ -230,7 +230,7 @@ export default function CompanyDashboard() {
                     {activeTab === "closed" && (
                         <Stack spacing={2} mt={4}>
                             {closedJobs.map((myJob, index) => (
-                                <CompanyJobCard key={index} myJob={myJob} />
+                                <BakerRecipeCard key={index} myJob={myJob} />
                             ))}
                         </Stack>
                     )}
@@ -238,7 +238,7 @@ export default function CompanyDashboard() {
                     {activeTab === "bookmarked" && (
                         <Stack spacing={2} mt={4}>
                             {openPinnedJobs.map((myJob, index) => (
-                                <CompanyJobCard
+                                <BakerRecipeCard
                                     key={index}
                                     userId={userId}
                                     myJob={myJob}

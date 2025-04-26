@@ -7,10 +7,10 @@ import React from "react";
 import { apiRoutes } from "../../routes.js";
 
 // Custom Components
-import DevNavbar from "../../components/DevNavbar.jsx";
-import DevApplyJob from "../../components/DevApplyJob.jsx";
+import GuestNavbar from "../../components/GuestNavbar.jsx";
+import GuestApplyJob from "../../components/GuestApplyJob.jsx";
 import Footer from "../../components/Footer.jsx";
-import DevJobRecs from "../../components/DevJobRecs.jsx";
+import GuestRecipeRecs from "../../components/GuestRecipeRecs.jsx";
 
 // Custom Assets
 import companySizeIcon from "../../assets/companySizeIcon.svg";
@@ -34,7 +34,7 @@ import {
     Grid,
 } from "@mui/joy";
 
-export default function DevIndividualJob() {
+export default function UserIndividualRecipe() {
 
     // Handling The Data Received
     const location = useLocation();
@@ -98,7 +98,7 @@ export default function DevIndividualJob() {
 
     return (
         <>
-            <DevNavbar />
+            <GuestNavbar />
             <Stack spacing={0}>
                 {/* Hero Section */}
                 <Grid
@@ -342,7 +342,7 @@ export default function DevIndividualJob() {
                                     </Stack>
                                 </Grid>
                                 <Grid item md={4}>
-                                    <DevApplyJob
+                                    <GuestApplyJob
                                         userId={userId}
                                         jobId={job._id}
                                         applied={applied}
@@ -372,7 +372,7 @@ export default function DevIndividualJob() {
                                         career? Apply now!
                                     </Typography>
                                 </Stack>
-                                <DevApplyJob
+                                <GuestApplyJob
                                     userId={userId}
                                     jobId={job._id}
                                     applied={applied}
@@ -601,7 +601,7 @@ export default function DevIndividualJob() {
                     </Grid>
                 </Grid>
             </Stack>
-            <DevJobRecs />
+            <GuestRecipeRecs />
             <Footer />
         </>
     );

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const devProfile = require("../models/dev");
+const devProfile = require("./Novice");
 
 //Dev Model
 const devSchema = new Schema({

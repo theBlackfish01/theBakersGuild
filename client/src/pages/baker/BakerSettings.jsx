@@ -6,8 +6,8 @@ import axios from "axios";
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
 // Components Import
-import CompanyNavbar from "../../components/CompanyNavbar.jsx";
-import CompanyProfileSettings from "../../components/CompanyProfileSettings.jsx";
+import BakerNavbar from "../../components/BakerNavbar.jsx";
+import BakerProfileSettings from "../../components/BakerProfileSettings.jsx";
 import ChangePassword from "../../components/ChangePassword.jsx";
 import DeleteAccount from "../../components/DeleteAccount.jsx";
 import Footer from "../../components/Footer.jsx";
@@ -15,7 +15,7 @@ import Footer from "../../components/Footer.jsx";
 // UI Imports
 import { Typography, Button, Stack, Grid } from "@mui/joy";
 
-export default function CompanySettings() {
+export default function BakerSettings() {
     const [activeTab, setActiveTab] = useState("Profile");
     const location = useLocation()
     const userId = location.state
@@ -27,7 +27,7 @@ export default function CompanySettings() {
 
     return (
         <>
-            <CompanyNavbar currentPage={"settings"} />
+            <BakerNavbar currentPage={"settings"} />
             <Grid
                 container
                 xs={12}
@@ -127,7 +127,7 @@ export default function CompanySettings() {
                 </Grid>
                 {/* Main Content */}
                 <Grid item md={6}>
-                    {activeTab === "Profile" && <CompanyProfileSettings
+                    {activeTab === "Profile" && <BakerProfileSettings
                                                     userId = {userId}
                                                     />}
                     {activeTab === "Change Password" && <ChangePassword
