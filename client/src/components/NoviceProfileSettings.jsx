@@ -37,7 +37,7 @@ import {
     Snackbar,
 } from "@mui/joy";
 
-export default function GuestProfileSettings() {
+export default function NoviceProfileSettings() {
     const location = useLocation()
     const user = JSON.parse(localStorage.getItem("user"))
     const userId = user.userId

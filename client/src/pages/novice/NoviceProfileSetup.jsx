@@ -15,7 +15,7 @@ import {
 
 // Custom components
 import Footer from "../../components/Footer.jsx";
-import Navbar from "../../components/GuestNavbar.jsx";
+import Navbar from "../../components/NoviceNavbar.jsx";
 
 // UI imports
 import {
@@ -42,7 +42,7 @@ import linkIcon from "../../assets/linkIcon.svg";
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
-export default function UserProfileSetup() {
+export default function NoviceProfileSetup() {
   // form fields
   const [country, setCountry] = useState("");
   const [experience, setExperience] = useState("");

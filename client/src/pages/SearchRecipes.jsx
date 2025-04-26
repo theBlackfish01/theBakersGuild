@@ -30,8 +30,8 @@ import jobSearchIcon from "../assets/jobSearchIcon.svg";
 import sortIcon from "../assets/sortIcon.svg";
 
 // Custom Components Imports
-import GuestNavbar from "../components/GuestNavbar.jsx";
-import GuestRecipeCard from "../components/GuestRecipeCard.jsx";
+import NoviceNavbar from "../components/NoviceNavbar.jsx";
+import NoviceRecipeCard from "../components/NoviceRecipeCard.jsx";
 import Footer from "../components/Footer";
 
 // Routes Import
@@ -255,7 +255,7 @@ export default function SearchRecipes() {
 
     return (
         <>
-            <GuestNavbar currentPage="search" />
+            <NoviceNavbar currentPage="search" />
             <Stack spacing={0}>
                 {/* Gray Section */}
                 <Grid
@@ -495,7 +495,7 @@ export default function SearchRecipes() {
                         {/* Job Cards */}
                         <Stack spacing={2}>
                             {jobs.map((job) => (
-                                <GuestRecipeCard
+                                <NoviceRecipeCard
                                     key={job.id}
                                     job={job}
                                     userId={userId}

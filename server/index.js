@@ -4,8 +4,8 @@ const cors = require("cors");
 const testRouter = require("./routes/testRoute");  // For testing only
 const userRouter = require("./routes/authRoute");
 const bakerRouter = require("./routes/bakerRoute");
-const devRouter = require("./routes/devRoute");
-const jobRouter = require("./routes/jobRoute");
+const devRouter = require("./routes/noviceRoute");
+const jobRouter = require("./routes/recipeRoute");
 const cookieParser = require("cookie-parser");
 const { errorMiddleware } = require("./middlewares/Error.js");
 require("dotenv").config(); // Load environment variables
@@ -39,7 +39,7 @@ app.use("/user", userRouter);
 app.use("/baker", bakerRouter);
 
 // Handling Developer Routes
-app.use("/usr", devRouter);
+app.use("/novice", devRouter);
 
 // Handling Job Routes
 app.use("/job", jobRouter);

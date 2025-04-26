@@ -6,8 +6,8 @@ import axios from "axios";
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
 // Components Import
-import GuestNavbar from "../../components/GuestNavbar.jsx";
-import GuestProfileSettings from "../../components/GuestProfileSettings.jsx";
+import NoviceNavbar from "../../components/NoviceNavbar.jsx";
+import NoviceProfileSettings from "../../components/NoviceProfileSettings.jsx";
 import ChangePassword from "../../components/ChangePassword.jsx";
 import DeleteAccount from "../../components/DeleteAccount.jsx";
 import Footer from "../../components/Footer.jsx";
@@ -15,7 +15,7 @@ import Footer from "../../components/Footer.jsx";
 // UI Imports
 import { Typography, Button, Stack, Grid } from "@mui/joy";
 
-export default function UserSettings() {
+export default function NoviceSettings() {
     const [activeTab, setActiveTab] = useState("Profile");
     const location = useLocation()
     const userId = location.state
@@ -26,7 +26,7 @@ export default function UserSettings() {
 
     return (
         <>
-            <GuestNavbar currentPage={"settings"} />
+            <NoviceNavbar currentPage={"settings"} />
             <Grid
                 container
                 xs={12}
@@ -126,7 +126,7 @@ export default function UserSettings() {
                 </Grid>
                 {/* Main Content */}
                 <Grid item md={6}>
-                    {activeTab === "Profile" && <GuestProfileSettings userId = {userId}/>}
+                    {activeTab === "Profile" && <NoviceProfileSettings userId = {userId}/>}
                     {activeTab === "Change Password" && <ChangePassword userId = {userId}/>}
                     {activeTab === "Delete Account" && <DeleteAccount userId = {userId}/>}
                 </Grid>

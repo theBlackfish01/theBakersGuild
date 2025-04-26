@@ -9,7 +9,7 @@ const {
   getCompany, 
   deleteCompany,
   getApplicants
-} = require("../controllers/companyController");
+} = require("../controllers/bakerController");
 
 //Handling Company Creation and Editing Routes
 companyRouter.post("/profileSetup", companyRegister);

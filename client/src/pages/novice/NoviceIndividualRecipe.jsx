@@ -7,10 +7,10 @@ import React from "react";
 import { apiRoutes } from "../../routes.js";
 
 // Custom Components
-import GuestNavbar from "../../components/GuestNavbar.jsx";
-import GuestApplyJob from "../../components/GuestApplyJob.jsx";
+import NoviceNavbar from "../../components/NoviceNavbar.jsx";
+import NoviceApplyJob from "../../components/NoviceApplyJob.jsx";
 import Footer from "../../components/Footer.jsx";
-import GuestRecipeRecs from "../../components/GuestRecipeRecs.jsx";
+import NoviceRecipeRecs from "../../components/NoviceRecipeRecs.jsx";
 
 // Custom Assets
 import companySizeIcon from "../../assets/companySizeIcon.svg";
@@ -34,7 +34,7 @@ import {
     Grid,
 } from "@mui/joy";
 
-export default function UserIndividualRecipe() {
+export default function NoviceIndividualRecipe() {
 
     // Handling The Data Received
     const location = useLocation();
@@ -98,7 +98,7 @@ export default function UserIndividualRecipe() {
 
     return (
         <>
-            <GuestNavbar />
+            <NoviceNavbar />
             <Stack spacing={0}>
                 {/* Hero Section */}
                 <Grid
@@ -342,7 +342,7 @@ export default function UserIndividualRecipe() {
                                     </Stack>
                                 </Grid>
                                 <Grid item md={4}>
-                                    <GuestApplyJob
+                                    <NoviceApplyJob
                                         userId={userId}
                                         jobId={job._id}
                                         applied={applied}
@@ -372,7 +372,7 @@ export default function UserIndividualRecipe() {
                                         career? Apply now!
                                     </Typography>
                                 </Stack>
-                                <GuestApplyJob
+                                <NoviceApplyJob
                                     userId={userId}
                                     jobId={job._id}
                                     applied={applied}
@@ -601,7 +601,7 @@ export default function UserIndividualRecipe() {
                     </Grid>
                 </Grid>
             </Stack>
-            <GuestRecipeRecs />
+            <NoviceRecipeRecs />
             <Footer />
         </>
     );

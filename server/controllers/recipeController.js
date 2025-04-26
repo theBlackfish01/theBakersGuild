@@ -1,6 +1,6 @@
 const JobPost = require("../models/recipePost");
 const Company = require("../models/baker");
-const Developer = require("../models/Novice");
+const Developer = require("../models/novice");
 const User = require("../models/user");
 
 //creating a new job post
@@ -67,7 +67,7 @@ const getAllJobs = async (req, res) => {
   const { userId } = req.query;
 
   try {
-      // Find the usr based on userId
+      // Find the novice based on userId
       const dev = await Developer.findOne({ userId });
       if (!dev) {
           return res.status(404).json({ message: "Developer not found." });
@@ -117,7 +117,7 @@ const getRelatedJobs = async (req, res) => {
   const { userId, jobId } = req.query;
   
   try {
-    // Find the usr based on userId
+    // Find the novice based on userId
     const dev = await Developer.findOne({ userId });
     if (!dev) {
       return res.status(404).json({ message: "Developer not found." });
@@ -302,9 +302,9 @@ const acceptOffer = async (req, res) => {
     const jobPost = await JobPost.findById(jobId);
     // console.log("Jobid received: ", jobId);
 
-    // Find the usr by user ID
+    // Find the novice by user ID
     const dev = await Developer.findOne({ userId });
-    // console.log("User: ", usr);
+    // console.log("User: ", novice);
 
     // Update the job post's acceptedApplicants array
     if (!jobPost.acceptedApplicants.includes(dev._id)) {
@@ -313,7 +313,7 @@ const acceptOffer = async (req, res) => {
       await jobPost.save();
     }
 
-    // Update the usr's myJobs array
+    // Update the novice's myJobs array
     const jobIndex = dev.myJobs.findIndex((myJob) => myJob.job.toString() === jobId);
     if (jobIndex !== -1) {
       dev.myJobs[jobIndex].isOffer = false;
@@ -337,7 +337,7 @@ const rejectOffer = async (req, res) => {
     // Find the job post by ID
     const jobPost = await JobPost.findById(jobId);
 
-    // Find the usr by user ID
+    // Find the novice by user ID
     const dev = await Developer.findOne({ userId });
 
     // Update the job post's rejectedApplicants array
@@ -346,7 +346,7 @@ const rejectOffer = async (req, res) => {
       await jobPost.save();
     }
 
-    // Update the usr's myJobs array
+    // Update the novice's myJobs array
     const jobIndex = dev.myJobs.findIndex((myJob) => myJob.job.toString() === jobId);
     if (jobIndex !== -1) {
       dev.myJobs[jobIndex].isOffer = false;

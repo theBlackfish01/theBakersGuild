@@ -1,4 +1,4 @@
-const Dev = require("../models/Novice");
+const Dev = require("../models/novice");
 const JobPost = require("../models/recipePost")
 
 // TODO

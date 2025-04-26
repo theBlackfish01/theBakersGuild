@@ -3,7 +3,7 @@ const testRouter = express.Router();
 
 // models
 const User = require("../models/User");
-const Dev = require("../models/Novice");
+const Dev = require("../models/novice");
 const Company = require("../models/baker");
 const Job = require("../models/recipePost");
 

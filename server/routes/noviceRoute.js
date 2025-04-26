@@ -1,7 +1,7 @@
 const express = require("express");
 const devRouter = express.Router();
 const cors = require("cors");
-const { devRegister, devEdit, devApplication, getDev, deleteDev } = require("../controllers/devController");
+const { devRegister, devEdit, devApplication, getDev, deleteDev } = require("../controllers/noviceController");
 
 devRouter.post("/profileSetup", devRegister);
 devRouter.patch("/profileEdit", devEdit);

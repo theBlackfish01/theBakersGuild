@@ -6,14 +6,14 @@ import axios from "axios";
 import { Grid, Typography, Button, Stack, Badge, Alert } from "@mui/joy";
 
 // Custom Components Imports
-import GuestNavbar from "../../components/GuestNavbar.jsx";
-import GuestRecipeCard from "../../components/GuestRecipeCard.jsx";
+import NoviceNavbar from "../../components/NoviceNavbar.jsx";
+import NoviceRecipeCard from "../../components/NoviceRecipeCard.jsx";
 import Footer from "../../components/Footer.jsx";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
 
-export default function UserDashboard() {
+export default function NoviceDashboard() {
     const [activeTab, setActiveTab] = useState("All");
     const [loading, setLoading] = useState(false);
     const [jobs, setJobs] = useState([]);
@@ -57,7 +57,7 @@ export default function UserDashboard() {
         // scroll to top
         window.scrollTo(0, 0);
 
-        // navigate to (/usr/searchjobs)
+        // navigate to (/novice/searchjobs)
         navigate(clientRoutes.searchJobs, { state: location.state });
     };
 
@@ -91,7 +91,7 @@ export default function UserDashboard() {
 
     return (
         <>
-            <GuestNavbar currentPage="dashboard" />
+            <NoviceNavbar currentPage="dashboard" />
             <Grid
                 container
                 sx={{
@@ -207,7 +207,7 @@ export default function UserDashboard() {
                     {activeTab === "All" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <GuestRecipeCard
+                                <NoviceRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -223,7 +223,7 @@ export default function UserDashboard() {
                     {activeTab === "Bookmarked" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <GuestRecipeCard
+                                <NoviceRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -239,7 +239,7 @@ export default function UserDashboard() {
                     {activeTab === "Applied" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <GuestRecipeCard
+                                <NoviceRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}
@@ -256,7 +256,7 @@ export default function UserDashboard() {
                     {activeTab === "Job Offers" && (
                         <Stack spacing={2} mt={4}>
                             {jobs.map((job) => (
-                                <GuestRecipeCard
+                                <NoviceRecipeCard
                                     key={job._id}
                                     job={job}
                                     userId={userId}

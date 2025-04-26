@@ -31,11 +31,11 @@ const apiRoutes = {
 
   // Developer Routes
   dev: {
-    register: "/usr/profileSetup",
-    edit: "/usr/profileEdit",
-    application: "/usr/application",
-    getProfile: "/usr/getProfile",
-    delete: "/usr/deleteDev"
+    register: "/novice/profileSetup",
+    edit: "/novice/profileEdit",
+    application: "/novice/application",
+    getProfile: "/novice/getProfile",
+    delete: "/novice/deleteDev"
   },
 
   // Company Routes
@@ -55,14 +55,14 @@ const clientRoutes = {
   signup: "/",
   login: "/login",
   companyProfileSetup: "/baker/profileSetup",
-  devProfileSetup: "/usr/profileSetup",
+  devProfileSetup: "/novice/profileSetup",
   companyDashboard: "/baker/dashboard",
-  devDashboard: "/usr/dashboard",
+  devDashboard: "/novice/dashboard",
   postAJob: "/postAJob",
-  searchJobs: "/usr/search",
-  devSettings: "/usr/settings",
+  searchJobs: "/novice/search",
+  devSettings: "/novice/settings",
   companySettings: "/baker/settings",
-  devIndividualJob: "/usr/job",
+  devIndividualJob: "/novice/job",
   companyIndividualJob:"/baker/job"
 };
 

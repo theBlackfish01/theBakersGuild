@@ -17,7 +17,7 @@ const {
   sendJobOffer,
   shortlistToggle
   
-} = require("../controllers/jobController");
+} = require("../controllers/recipeController");
 
 jobRouter.post("/create", createJob);
 jobRouter.get("/all", getAllJobs);
