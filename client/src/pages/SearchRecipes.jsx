@@ -37,6 +37,8 @@ import Footer from "../components/Footer";
 // Routes Import
 import { apiRoutes, clientRoutes } from "../routes.js";
 
+import { useAuthContext } from "../components/useAuthContext.jsx";
+
 export default function SearchRecipes() {
     // User input states
     const [searchQuery, setSearchQuery] = useState("");
@@ -60,8 +62,10 @@ export default function SearchRecipes() {
     const navigate = useNavigate();
 
     // state received
+
     const location = useLocation();
-    const userId = location.state.userId;
+    const { user } = useAuthContext();
+    const userId = location.state?.userId || user?.userId || "guest-placeholder-id";
 
     // Function to fetch jobs based on search criteria
     const fetchJobs = async (searchQuery,
@@ -165,7 +169,7 @@ export default function SearchRecipes() {
             setNoMoreJobs(false);
         } catch (error) {
             console.error("Error fetching jobs:", error);
-            setError("Error fetching jobs. Please try again.");
+            setError("Error fetching recipes. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -535,9 +539,9 @@ export default function SearchRecipes() {
                                 }}
                             >
                                 {" "}
-                                Looks like there aren't any job matches for your
+                                Looks like there aren't any recipe matches for your
                                 search at the moment. Please try again later
-                                💼✨
+
                             </Alert>
                         )}
                     </Grid>

@@ -336,8 +336,7 @@ export default function NoviceIndividualRecipe() {
                                             level="body-md"
                                             color="neutral"
                                         >
-                                            Ready to take the next step in your
-                                            career? Apply now!
+                                            Ready to take the next step?
                                         </Typography>
                                     </Stack>
                                 </Grid>

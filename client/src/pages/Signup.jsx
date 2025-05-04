@@ -40,7 +40,7 @@ import { useAuthContext } from "../components/useAuthContext.jsx";
 
 function CustomRadio({ label, ...props }) {
     return (
-        <ListItem variant="outlined" sx={{ mt: 0, mb: 2 }}>
+        <ListItem variant="outlined" sx={{ mt: 0, mb: 1.5 }}>
             <ListItemDecorator>
                 {label === "Developer" ? (
                     <img
@@ -129,10 +129,9 @@ const Signup = () => {
             if (response.data.success) {
                 const userId = response.data.user._id;
                 console.log(userId)
-                localStorage.setItem("user", JSON.stringify( response.data.user));
-                
+                localStorage.setItem("user", JSON.stringify(response.data.user));
 
-                dispatch({ type: "LOGIN", payload: { user: response.data.user} });
+                dispatch({ type: "LOGIN", payload: { user: response.data.user } });
                 if (userType === "Developer") {
                     window.scrollTo(0, 0);
                     navigate(clientRoutes.devProfileSetup, {
@@ -149,7 +148,6 @@ const Signup = () => {
             else {
                 throw new Error(response.data.message);
             }
-            // TODO
         } catch (error) {
             // Handle registration error
             console.log("The Error at frontend is: ", error);
@@ -179,7 +177,7 @@ const Signup = () => {
                     <Grid
                         sx={{
                             mt: 1,
-                            mb: 4,
+                            mb: 3,
                             display: "flex",
                             alignItems: "space-between",
                             flexDirection: "row",
@@ -198,7 +196,7 @@ const Signup = () => {
                         </Typography>
                         <Box>
                             <form onSubmit={registerUser}>
-                                <Stack gap={3} sx={{ mt: 4 }}>
+                                <Stack gap={2.5} sx={{ mt: 3 }}>
                                     {/* First + Last Name */}
                                     <Grid container spacing={2}>
                                         <Grid item xs={6}>
@@ -212,9 +210,7 @@ const Signup = () => {
                                                     value={firstName}
                                                     placeholder="First Name"
                                                     onChange={(e) =>
-                                                        setFirstName(
-                                                            e.target.value
-                                                        )
+                                                        setFirstName(e.target.value)
                                                     }
                                                     sx={{
                                                         "--Input-focusedHighlight":
@@ -226,7 +222,7 @@ const Signup = () => {
                                                 {error &&
                                                     error.response.data
                                                         .field ===
-                                                        "firstName" && (
+                                                    "firstName" && (
                                                         <Typography
                                                             variant="body2"
                                                             sx={{
@@ -253,15 +249,13 @@ const Signup = () => {
                                                     value={lastName}
                                                     placeholder="Last Name"
                                                     onChange={(e) =>
-                                                        setLastName(
-                                                            e.target.value
-                                                        )
+                                                        setLastName(e.target.value)
                                                     }
                                                 />
                                                 {error &&
                                                     error.response.data
                                                         .field ===
-                                                        "lastname" && (
+                                                    "lastname" && (
                                                         <Typography
                                                             variant="body2"
                                                             sx={{
@@ -285,8 +279,7 @@ const Signup = () => {
                                         required
                                         error={
                                             error &&
-                                            error.response.data.field ===
-                                                "email"
+                                            error.response.data.field === "email"
                                         }
                                     >
                                         <FormLabel>Email</FormLabel>
@@ -301,8 +294,7 @@ const Signup = () => {
                                             placeholder="user@example.com"
                                         />
                                         {error &&
-                                            error.response.data.field ===
-                                                "email" && (
+                                            error.response.data.field === "email" && (
                                                 <FormHelperText>
                                                     {
                                                         error.response.data
@@ -316,8 +308,7 @@ const Signup = () => {
                                         required
                                         error={
                                             error &&
-                                            error.response.data.field ===
-                                                "password"
+                                            error.response.data.field === "password"
                                         }
                                     >
                                         <FormLabel>Password</FormLabel>
@@ -331,8 +322,7 @@ const Signup = () => {
                                             placeholder="Password"
                                         />
                                         {error &&
-                                            error.response.data.field ===
-                                                "password" && (
+                                            error.response.data.field === "password" && (
                                                 <FormHelperText>
                                                     {
                                                         error.response.data
@@ -355,15 +345,13 @@ const Signup = () => {
                                             }
                                             sx={{
                                                 flexDirection: "row",
-                                                gap: 2,
-                                                [`& .${radioClasses.checked}`]:
-                                                    {
-                                                        [`& .${radioClasses.action}`]:
-                                                            {
-                                                                inset: -1,
-                                                                border: "2px solid",
-                                                            },
+                                                gap: 1.5,
+                                                [`& .${radioClasses.checked}`]: {
+                                                    [`& .${radioClasses.action}`]: {
+                                                        inset: -1,
+                                                        border: "2px solid",
                                                     },
+                                                },
                                                 [`& .${radioClasses.radio}`]: {
                                                     display: "contents",
                                                     "& > svg": {
@@ -379,23 +367,20 @@ const Signup = () => {
                                             <List
                                                 sx={{
                                                     "--List-gap": "1rem",
-                                                    "--ListItem-paddingY": "1rem",
+                                                    "--ListItem-paddingY": "0.75rem",
                                                     "--ListItem-radius": "8px",
                                                     padding: 0,
                                                     margin: 0,
                                                 }}
                                             >
-                                                {[
-                                                    { value: "Developer", label: "Food Lover" },
-                                                    { value: "Company", label: "Baker" },
-                                                ].map(({ value, label }) => (
+                                                {[{ value: "Developer", label: "Novice" }, { value: "Company", label: "Baker" }].map(({ value, label }) => (
                                                     <CustomRadio key={value} value={value} label={label} />
                                                 ))}
                                             </List>
 
                                         </RadioGroup>
                                     </FormControl>
-                                    <Stack spacing={5}>
+                                    <Stack spacing={4}>
                                         {/* Terms & Conditions */}
                                         <FormControl required>
                                             <Checkbox
@@ -403,14 +388,11 @@ const Signup = () => {
                                                 variant="soft"
                                                 checked={termsAccepted}
                                                 onChange={(e) =>
-                                                    setTermsAccepted(
-                                                        e.target.checked
-                                                    )
+                                                    setTermsAccepted(e.target.checked)
                                                 }
                                             />
                                             <FormHelperText>
-                                                Please review our terms and
-                                                conditions before signing up.
+                                                Please review our terms and conditions before signing up.
                                             </FormHelperText>
                                         </FormControl>
                                         <Button
@@ -426,11 +408,35 @@ const Signup = () => {
                                         >
                                             Sign up
                                         </Button>
+                                        <Button
+                                            variant="outlined"
+                                            fullWidth
+                                            onClick={async () => {
+                                                try {
+                                                    const res = await axios.post("/user/guest");
+                                                    dispatch({ type: "LOGIN", payload: res.data });
+                                                    localStorage.setItem("user", JSON.stringify(res.data));
+                                                    navigate(clientRoutes.devDashboard); // Only use navigate here
+                                                } catch (err) {
+                                                    console.error("Guest login failed:", err);
+                                                }
+                                            }}
+                                            sx={{
+                                                mt: 1.5,
+                                                borderColor: "#F5A25D",
+                                                color: "#F5A25D",
+                                                "&:hover": {
+                                                    backgroundColor: "#fdf4ec",
+                                                    borderColor: "#F5A25D",
+                                                },
+                                            }}
+                                        >
+                                            Continue as Guest
+                                        </Button>
                                     </Stack>
                                     {/* Error message for overall form submission */}
                                     {error &&
-                                        error.response.data.field ===
-                                            "general" && (
+                                        error.response.data.field === "general" && (
                                             <Alert
                                                 variant="soft"
                                                 color="danger"
@@ -447,7 +453,7 @@ const Signup = () => {
                                             {successMessage}
                                         </Typography>
                                     )}
-                                    <Divider></Divider>
+                                    <Divider />
                                     <Typography>
                                         Already have an account? &nbsp;
                                         <Link
@@ -456,11 +462,11 @@ const Signup = () => {
                                                 textDecoration: "none",
                                                 color: "#F5A25D",
                                                 "&:hover": {
-                                                    color: "#F5A25D", // Darken color on hover
+                                                    color: "#F5A25D",
                                                 },
                                             }}
                                         >
-                                            Log in to your account.{" "}
+                                            Log in to your account.
                                         </Link>
                                     </Typography>
                                 </Stack>
@@ -469,7 +475,7 @@ const Signup = () => {
                     </Grid>
                 </Grid>
                 {/* Background Column */}
-                <Grid item xs={6} sx={{backgroundColor: "#4E342E",  p: 0 }} margin={0}>
+                <Grid item xs={6} sx={{backgroundColor: "#4E342E", p: 0 }} margin={0}>
                     <img
                         src={signupBackground}
                         alt="signupBackground"

@@ -14,11 +14,14 @@ import Footer from "../../components/Footer.jsx";
 
 // UI Imports
 import { Typography, Button, Stack, Grid } from "@mui/joy";
+import {useAuthContext} from "../../components/useAuthContext.jsx";
 
 export default function NoviceSettings() {
     const [activeTab, setActiveTab] = useState("Profile");
-    const location = useLocation()
-    const userId = location.state
+
+    const location = useLocation();
+    const { user } = useAuthContext();
+    const userId = location.state?.userId || user?.userId || "guest-placeholder-id";
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);

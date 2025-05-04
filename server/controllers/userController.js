@@ -160,6 +160,31 @@ const loginUser = async (req, res) => {
   }
 };
 
+const loginGuest = async (req, res) => {
+  try {
+    const guestEmail = process.env.GUEST_EMAIL || "guest@example.com";
+    const user = await User.findOne({ email: guestEmail });
+
+    if (!user) return res.status(404).json({ message: "Guest user not found" });
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({
+      success: true,
+      userType: user.userType,
+      userId: user._id,
+      user: {
+        userId: user._id,
+        token: token,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getUser = async (req, res) => {
   const {userId} = req.query;
   try {
@@ -311,4 +336,4 @@ const deleteUser = async (req, res) => {
   }
 }
 
-module.exports = { registerUser, loginUser, getUser, editUser, changePassword, deleteUser };
+module.exports = { registerUser, loginUser, getUser, editUser, changePassword, deleteUser, loginGuest};

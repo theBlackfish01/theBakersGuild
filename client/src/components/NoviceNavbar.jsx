@@ -96,13 +96,6 @@ export default function NoviceNavbar({ currentPage }) {
                 >
                     Search
                 </Button>
-                <Button
-                    variant="plain"
-                    color={getButtonColor("settings")}
-                    onClick={() => handleTabChange("settings")}
-                >
-                    Settings
-                </Button>
                 {/* Assuming 'OR' is a button or a user's initials/avatar */}
                 <Dropdown>
                     {/* Remove styling from MenuButton */}

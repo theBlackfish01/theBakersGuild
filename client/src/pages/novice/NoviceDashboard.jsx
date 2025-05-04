@@ -215,7 +215,6 @@ export default function NoviceDashboard() {
                                     bookmarkedJobs={bookmarkedJobs}
                                     appliedJobs={appliedJobs}
                                     offeredJobs={offeredJobs}
-                                   
                                 />
                             ))}
                         </Stack>

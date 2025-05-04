@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route , Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 import { clientRoutes } from "./routes.js";
-
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import BakerProfileSetup from "./pages/baker/BakerProfileSetup.jsx";
@@ -18,8 +18,8 @@ import JobPostPage from "./pages/baker/BakerIndividualJob.jsx";
 import BakerIndividualRecipeNew from "./pages/baker/BakerIndividualRecipeNew.jsx";
 import { useAuthContext } from "./components/useAuthContext.jsx";
 
-// Experimenting with themes
 import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
+
 const newTheme = extendTheme({
   colorSchemes: {
     dark: {
@@ -57,43 +57,75 @@ const newTheme = extendTheme({
   },
 });
 
-
-axios.defaults.baseURL = " http://localhost:8000";
+axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
+
 function App() {
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
+
+  useEffect(() => {
+    if (!user) {
+      axios.post("/user/guest")
+          .then((res) => {
+            dispatch({
+              type: "LOGIN",
+              payload: {
+                userId: res.data.userId,
+                userType: res.data.userType,
+                token: res.data.user.token,
+              },
+            });
+            localStorage.setItem("user", JSON.stringify({
+              userId: res.data.userId,
+              userType: res.data.userType,
+              token: res.data.user.token,
+            }));
+          })
+          .catch((err) => console.error("Guest login failed:", err));
+    }
+  }, [user]);
+
+
   return (
-    <CssVarsProvider theme={newTheme}>
-      <BrowserRouter>
-      <Routes>
-          {!user && (
-            <>
-              <Route path={clientRoutes.signup} element={<Signup />} />
-              <Route path={clientRoutes.login} element={<Login />} />
-              <Route path="*" element={<Navigate to={clientRoutes.login} />} />
-              
-            </>
-          )}
+      <CssVarsProvider theme={newTheme}>
+        <BrowserRouter>
+          <Routes>
+            {!user && (
+                <>
+                  <Route path={clientRoutes.signup} element={<Signup />} />
+                  <Route path={clientRoutes.login} element={<Login />} />
+                  <Route path="*" element={<Navigate to={clientRoutes.login} />} />
+                </>
+            )}
 
             {user && (
-              <>
-                <Route path={clientRoutes.companyProfileSetup} element={<BakerProfileSetup />} />
-                <Route path={clientRoutes.devProfileSetup} element={<NoviceProfileSetup />} />
-                <Route path={clientRoutes.companyDashboard} element={<BakerDashboard />} />
-                <Route path={clientRoutes.devDashboard} element={<NoviceDashboard />} />
-                <Route path={clientRoutes.devIndividualJob} element={<NoviceIndividualRecipe />} />
-                <Route path={clientRoutes.companyIndividualJob} element={<BakerIndividualRecipeNew />} />
-                <Route path={clientRoutes.postAJob} element={<PostARecipe />} />
-                <Route path={clientRoutes.searchJobs} element={<SearchRecipes />} />
-                <Route path={clientRoutes.devSettings} element={<NoviceSettings />} />
-                <Route path={clientRoutes.companySettings} element={<BakerSettings />} />
-                <Route path={clientRoutes.signup} element={<Signup />} />
-                <Route path={clientRoutes.login} element={<Login />} />
-              </>
+                <>
+                  <Route path={clientRoutes.companyProfileSetup} element={<BakerProfileSetup />} />
+                  <Route path={clientRoutes.devProfileSetup} element={<NoviceProfileSetup />} />
+                  <Route path={clientRoutes.companyDashboard} element={<BakerDashboard />} />
+                  <Route path={clientRoutes.devDashboard} element={<NoviceDashboard />} />
+                  <Route path={clientRoutes.devIndividualJob} element={<NoviceIndividualRecipe />} />
+                  <Route path={clientRoutes.companyIndividualJob} element={<BakerIndividualRecipeNew />} />
+                  <Route path={clientRoutes.postAJob} element={<PostARecipe />} />
+                  <Route path={clientRoutes.searchJobs} element={<SearchRecipes />} />
+                  <Route path={clientRoutes.devSettings} element={<NoviceSettings />} />
+                  <Route path={clientRoutes.companySettings} element={<BakerSettings />} />
+                  <Route path={clientRoutes.signup} element={<Signup />} />
+                  <Route path={clientRoutes.login} element={<Login />} />
+                  {/* Default route: redirect based on userType */}
+                  <Route
+                      path="*"
+                      element={
+                        user.userType === "Company"
+                            ? <Navigate to={clientRoutes.companyDashboard} />
+                            : <Navigate to={clientRoutes.devDashboard} />
+                      }
+                  />
+                </>
             )}
-        </Routes>
-      </BrowserRouter>
-    </CssVarsProvider>
+          </Routes>
+        </BrowserRouter>
+      </CssVarsProvider>
   );
 }
 
