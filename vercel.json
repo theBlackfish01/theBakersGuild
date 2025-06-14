@@ -1,8 +1,10 @@
 {
-  "rewrites": [
+  "version": 2,
+  "routes": [
+    { "handle": "filesystem" },
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.js"
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
     }
   ],
   "functions": {

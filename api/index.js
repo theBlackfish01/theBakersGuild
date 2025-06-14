@@ -1,8 +1,8 @@
-// api/index.js   – single entry that proxies to Express
-const app = require("../server/app");    // ← your Express instance
+// api/index.js  (single entry for every /api/** request)
+const app = require("../server/app");     // Express instance
 
 module.exports = (req, res) => {
-    // NOTE: path starts after `/api`, so Express sees `/user/guest`
-    req.url = req.url.replace(/^\/api/, "");  // strip prefix for Express
+    // Strip the "/api" prefix so Express sees the original route
+    req.url = req.url.replace(/^\/api/, "");
     return app(req, res);
 };
