@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// api
+/* One instance everywhere */
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL ?? "",  // empty string = same-origin during local dev
+    baseURL: import.meta.env.VITE_API_URL ?? "",   // "/api" in prod, "" in dev
     withCredentials: true,
 });
 

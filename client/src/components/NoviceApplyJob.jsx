@@ -24,6 +24,7 @@ import {
     Alert,
     Snackbar,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function NoviceApplyJob(props) {
     const [open, setOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function NoviceApplyJob(props) {
         
         setGenerateLoading(true);
         try {
-            const response = await axios.post('/ai/generate-cover-letter', {
+            const response = await api.post('/ai/generate-cover-letter', {
                 jobId,
                 applicantId
             });
@@ -82,7 +83,7 @@ export default function NoviceApplyJob(props) {
 
         try {
             // Make the API call to submit the application
-            const response = await axios.post(apiRoutes.dev.application, {
+            const response = await api.post(apiRoutes.dev.application, {
                 userId: props.userId,
                 jobId: props.jobId,
                 coverLetter: coverLetter,

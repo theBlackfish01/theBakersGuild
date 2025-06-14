@@ -32,6 +32,7 @@ import {
 } from "../../globalConstants.js";
 
 import { apiRoutes, clientRoutes } from "../../routes.js";
+import api from "../../lib/api.js";
 
 export default function BakerProfileSetup() {
   // State to control the visibility of form sections
@@ -118,7 +119,7 @@ export default function BakerProfileSetup() {
 
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         apiRoutes.company.register,
         requestData
       );

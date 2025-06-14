@@ -33,6 +33,7 @@ import rejectIcon from "../assets/rejectIcon.svg";
 import defaultRecipeImage from "../assets/bakingImage.png";
 import PropTypes from "prop-types";
 import { apiRoutes } from "../routes.js";
+import api from "../lib/api.js";
 
 const NoviceRecipeCard = ({
                               job,
@@ -61,7 +62,7 @@ const NoviceRecipeCard = ({
                 : [...prev, job]
         );
         try {
-            await axios.put(apiRoutes.job.updateBookmarks, {
+            await api.put(apiRoutes.job.updateBookmarks, {
                 userId,
                 jobId: job._id,
                 isBookmarked,

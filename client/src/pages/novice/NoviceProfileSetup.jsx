@@ -41,6 +41,7 @@ import linkIcon from "../../assets/linkIcon.svg";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
+import api from "../../lib/api.js";
 
 export default function NoviceProfileSetup() {
   // form fields
@@ -139,7 +140,7 @@ export default function NoviceProfileSetup() {
     setError("");
 
     try {
-      const response = await axios.post(apiRoutes.dev.register, {
+      const response = await api.post(apiRoutes.dev.register, {
         userId,
         country,
         experience,

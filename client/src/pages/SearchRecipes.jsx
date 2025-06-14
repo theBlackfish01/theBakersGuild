@@ -38,6 +38,7 @@ import Footer from "../components/Footer";
 import { apiRoutes, clientRoutes } from "../routes.js";
 
 import { useAuthContext } from "../components/useAuthContext.jsx";
+import api   from "../lib/api";
 
 export default function SearchRecipes() {
     // User input states
@@ -77,7 +78,7 @@ export default function SearchRecipes() {
         environment) => {
         try {
             setLoading(true);
-            let response = await axios.get(apiRoutes.job.getAll, {
+            let response = await api.get(apiRoutes.job.getAll, {
                 params: { userId },
             });
 

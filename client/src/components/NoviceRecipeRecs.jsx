@@ -32,6 +32,7 @@ import {
     Link,
     Avatar,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function NoviceRecipeRecs() {
     // View All Jobs Handler
@@ -65,7 +66,7 @@ export default function NoviceRecipeRecs() {
     useEffect(() => {
         const fetchRelatedJobs = async () => {
             try {
-                const response = await axios.get(apiRoutes.job.getRelatedJobs, {
+                const response = await api.get(apiRoutes.job.getRelatedJobs, {
                     params: { userId, jobId},
                 });
                 console.log(response.data)

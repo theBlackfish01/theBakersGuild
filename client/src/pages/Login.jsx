@@ -19,6 +19,7 @@ import {
 import { GlobalStyles, border, display } from "@mui/system";
 import { apiRoutes, clientRoutes } from "../routes.js";
 import { useAuthContext } from "../components/useAuthContext.jsx";
+import api from "../lib/api.js";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -38,10 +39,7 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const response = await axios.post(apiRoutes.user.login, {
-                email,
-                password,
-            });
+            const response = await api.post(apiRoutes.user.login, { email, password });
 
             if (response.data.success) {
 

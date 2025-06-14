@@ -19,6 +19,7 @@ import Footer from "../../components/Footer";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
+import api from "../../lib/api.js";
 
 export default function BakerDashboard() {
     // navigation
@@ -38,7 +39,7 @@ export default function BakerDashboard() {
         setLoading(true);
         try {
             // API call
-            const response = await axios.get(
+            const response = await api.get(
                 apiRoutes.company.getMyJobs(userId)
             );
             setOpenPinnedJobs(response.data.openPinnedJobs);

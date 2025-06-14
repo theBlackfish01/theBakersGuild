@@ -36,6 +36,7 @@ import {
     Alert,
     Snackbar,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function NoviceProfileSettings() {
     const location = useLocation()
@@ -70,7 +71,7 @@ export default function NoviceProfileSettings() {
     useEffect(() => {
         const getData = async () => {
           try {
-            const response1 = await axios.get(apiRoutes.dev.getProfile, {params: {userId: userId}});
+            const response1 = await api.get(apiRoutes.dev.getProfile, {params: {userId: userId}});
 
             setCurrentCountry(response1.data.country);
             setCurrentExperience(response1.data.experience);
@@ -183,7 +184,7 @@ export default function NoviceProfileSettings() {
         const user_id = userId // sample user id
         setGenerateLoading(true);
         try {
-            const response = await axios.post('/ai/generate-dev-bio', {
+            const response = await api.post('/ai/generate-dev-bio', {
                 userId: user_id 
             });
 

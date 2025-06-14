@@ -37,6 +37,7 @@ import {
     Alert,
     Snackbar,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function BakerProfileSettings() {
     const location = useLocation()
@@ -67,7 +68,7 @@ export default function BakerProfileSettings() {
     useEffect(() => {
         const getData = async () => {
           try {
-            const response1 = await axios.get(apiRoutes.company.getProfile, {params: {userId: userId}});
+            const response1 = await api.get(apiRoutes.company.getProfile, {params: {userId: userId}});
     
             setCurrentCompanyName(response1.data.name);
             setCurrentWebsite(response1.data.website);
@@ -224,7 +225,7 @@ export default function BakerProfileSettings() {
         setLoadingOverview(true);
         try {
             console.log('hello')
-            const response = await axios.post('/ai/generate-company-overview', {
+            const response = await api.post('/ai/generate-company-overview', {
                 userId: user_id 
             });
 

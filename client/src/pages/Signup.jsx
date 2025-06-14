@@ -118,7 +118,7 @@ const Signup = () => {
 
         try {
             // Make API request to register user
-            const response = await axios.post(apiRoutes.user.register, {
+            const response = await api.post(apiRoutes.user.register, {
                 firstName,
                 lastName,
                 email,

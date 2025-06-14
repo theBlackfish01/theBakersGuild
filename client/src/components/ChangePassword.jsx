@@ -17,6 +17,7 @@ import {
     Alert,
     Snackbar,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function ChangePassword() {
     // form fields
@@ -36,7 +37,7 @@ export default function ChangePassword() {
     const getData = async () => {
         try {
         //TODO: Get Using Actual User Id 
-        const response2 = await axios.get(apiRoutes.user.getUser,
+        const response2 = await api.get(apiRoutes.user.getUser,
             {params: {userId: userId}});
         console.log("Password: ",)
         setCurrentPassword(response2.data.password)
