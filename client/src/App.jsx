@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import axios from "axios";
 import { useEffect } from "react";
 
 import { clientRoutes } from "./routes.js";
@@ -19,16 +18,8 @@ import BakerIndividualRecipeNew from "./pages/baker/BakerIndividualRecipeNew.jsx
 import { useAuthContext } from "./components/useAuthContext.jsx";
 
 import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
-
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
-import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
-import { useAuthContext } from "./components/useAuthContext.jsx";
 import api from "./lib/api";                         /* ← use wrapper */
 
-import {
-  clientRoutes
-} from "./routes.js";
 
 const newTheme = extendTheme({
   colorSchemes: {
