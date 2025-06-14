@@ -2,7 +2,7 @@ const express = require("express");
 const testRouter = express.Router();
 
 // models
-const User = require("../models/User");
+const User = require("../models/user");
 const Dev = require("../models/novice");
 const Company = require("../models/baker");
 const Job = require("../models/recipePost");
