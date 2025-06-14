@@ -37,7 +37,7 @@ import {
 // Routes Imports
 import { apiRoutes, clientRoutes } from "../routes.js";
 import { useAuthContext } from "../components/useAuthContext.jsx";
-import api from "../lib/api";
+import api from "../lib/api.js";
 
 function CustomRadio({ label, ...props }) {
     return (

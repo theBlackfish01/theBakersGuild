@@ -18,7 +18,7 @@ import BakerIndividualRecipeNew from "./pages/baker/BakerIndividualRecipeNew.jsx
 import { useAuthContext } from "./components/useAuthContext.jsx";
 
 import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
-import api from "./lib/api";                         /* ← use wrapper */
+import api from "./lib/api.js";                         /* ← use wrapper */
 
 
 const newTheme = extendTheme({

@@ -38,7 +38,7 @@ import Footer from "../components/Footer";
 import { apiRoutes, clientRoutes } from "../routes.js";
 
 import { useAuthContext } from "../components/useAuthContext.jsx";
-import api   from "../lib/api";
+import api   from "../lib/api.js";
 
 export default function SearchRecipes() {
     // User input states
