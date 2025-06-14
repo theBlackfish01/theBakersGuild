@@ -37,6 +37,7 @@ import {
 // Routes Imports
 import { apiRoutes, clientRoutes } from "../routes.js";
 import { useAuthContext } from "../components/useAuthContext.jsx";
+import api from "../lib/api";
 
 function CustomRadio({ label, ...props }) {
     return (
@@ -413,7 +414,6 @@ const Signup = () => {
                                             fullWidth
                                             onClick={async () => {
                                                 try {
-                                                    import api from "../lib/api";
                                                     const res = await api.post("/user/guest");
                                                     dispatch({ type: "LOGIN", payload: res.data });
                                                     localStorage.setItem("user", JSON.stringify(res.data));
