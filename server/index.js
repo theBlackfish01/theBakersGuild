@@ -13,11 +13,16 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8000;
 
+const allowedOrigins = [
+    'https://the-bakers-guild.vercel.app', // ← your Vercel front-end
+    'http://localhost:5173'                // ← keeps local dev working
+];
+
 app.use(
     cors({
-        origin: [process.env.FRONTEND_URL],   // <- set in Step 3
-        methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
-        credentials: true,
+        origin: allowedOrigins,
+        credentials: true,                   // send cookies / auth headers
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
     })
 );
 
