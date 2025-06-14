@@ -57,8 +57,7 @@ const newTheme = extendTheme({
   },
 });
 
-axios.defaults.baseURL = import.meta.env.MONGO_URI|| "http://localhost:8000";
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 function App() {
   const { user, dispatch } = useAuthContext();

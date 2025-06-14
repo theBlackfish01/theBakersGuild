@@ -413,7 +413,8 @@ const Signup = () => {
                                             fullWidth
                                             onClick={async () => {
                                                 try {
-                                                    const res = await axios.post("/user/guest");
+                                                    import api from "../lib/api";
+                                                    const res = await api.post("/user/guest");
                                                     dispatch({ type: "LOGIN", payload: res.data });
                                                     localStorage.setItem("user", JSON.stringify(res.data));
                                                     navigate(clientRoutes.devDashboard); // Only use navigate here
