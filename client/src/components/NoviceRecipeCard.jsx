@@ -79,7 +79,7 @@ const NoviceRecipeCard = ({
     const handleRejectOffer = async () => {
         setLoading(true);
         try {
-            await axios.post(apiRoutes.job.rejectOffer, { userId, jobId: job._id });
+            await api.post(apiRoutes.job.rejectOffer, { userId, jobId: job._id });
             setOfferRejected(true);
             setOfferAccepted(false);
             setPendingOffer(false);
@@ -96,7 +96,7 @@ const NoviceRecipeCard = ({
     const handleAcceptOffer = async () => {
         setLoading(true);
         try {
-            await axios.post(apiRoutes.job.acceptOffer, { userId, jobId: job._id });
+            await api.post(apiRoutes.job.acceptOffer, { userId, jobId: job._id });
             setOfferAccepted(true);
             setOfferRejected(false);
             setPendingOffer(false);

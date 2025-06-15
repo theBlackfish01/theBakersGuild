@@ -189,7 +189,7 @@ export default function BakerProfileSettings() {
         console.log("Request data before sending:", requestData2);
     
         try {
-            const response = await axios.patch(apiRoutes.company.edit, requestData2);
+            const response = await api.patch(apiRoutes.company.edit, requestData2);
     
             console.log(response.data);
             //navigate(clientRoutes.companyDashboard, { userId: userId });

@@ -239,7 +239,7 @@ export default function NoviceProfileSettings() {
         console.log("Request data before sending:", requestData2);
     
         try {
-            const response = await axios.patch(apiRoutes.dev.edit, requestData2);
+            const response = await api.patch(apiRoutes.dev.edit, requestData2);
     
             console.log(response.data);
             //navigate(clientRoutes.companyDashboard, { userId: userId });

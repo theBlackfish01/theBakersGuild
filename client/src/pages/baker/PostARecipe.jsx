@@ -36,6 +36,7 @@ import {
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
+import api from "../../lib/api.js";
 
 export default function PostARecipe() {
     // form fields state
@@ -175,7 +176,7 @@ export default function PostARecipe() {
     console.log("Request data before sending:", requestData);
     try {
         // Send a POST request to the server
-        const response = await axios.post(
+        const response = await api.post(
             apiRoutes.job.create,
             requestData
         );

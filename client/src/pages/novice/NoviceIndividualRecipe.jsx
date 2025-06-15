@@ -33,6 +33,7 @@ import {
     IconButton,
     Grid,
 } from "@mui/joy";
+import api from "../../lib/api.js";
 
 export default function NoviceIndividualRecipe() {
 
@@ -62,7 +63,7 @@ export default function NoviceIndividualRecipe() {
         setIsBookmarked(prevIsBookmarked => !prevIsBookmarked);
         
         try {
-            const response = await axios.put(apiRoutes.job.individualBookmarks, {
+            const response = await api.put(apiRoutes.job.individualBookmarks, {
                 userId,
                 jobId: job._id,
                 isBookmarked: !isBookmarked, // Toggle the bookmark status

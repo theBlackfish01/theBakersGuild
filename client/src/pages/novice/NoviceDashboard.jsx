@@ -12,6 +12,7 @@ import Footer from "../../components/Footer.jsx";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../../routes.js";
+import api from "../../lib/api.js";
 
 export default function NoviceDashboard() {
     const [activeTab, setActiveTab] = useState("All");
@@ -33,7 +34,7 @@ export default function NoviceDashboard() {
     const fetchJobsData = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(apiRoutes.job.getAll, {
+            const response = await api.get(apiRoutes.job.getAll, {
                 params: { userId },
             });
             const { allJobs, bookmarkedJobs, appliedJobs, offeredJobs} =

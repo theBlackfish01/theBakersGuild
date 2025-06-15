@@ -17,6 +17,7 @@ import Footer from "../../components/Footer";
 // Custom Assets Imports
 import companySizeIcon from "../../assets/companySizeIcon.svg";
 import timePostedIcon from "../../assets/timePostedIcon.svg";
+import api from "../../lib/api.js";
 
 // Formats compensation to USD
 const formatCompenstation = (compensation) => {
@@ -52,7 +53,7 @@ export default function BakerIndividualRecipeNew() {
     const fetchApplicants = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(apiRoutes.company.getApplicants, {
+            const response = await api.get(apiRoutes.company.getApplicants, {
                 params: { jobId },
             }); // Make a request to your backend API
             // console.log("Data that I am getting for the applicants  ", response);

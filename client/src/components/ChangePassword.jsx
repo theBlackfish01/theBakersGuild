@@ -77,7 +77,7 @@ export default function ChangePassword() {
                 userId
                 
             }
-            const response = await axios.patch(apiRoutes.user.changePassword, requestData);
+            const response = await api.patch(apiRoutes.user.changePassword, requestData);
             console.log(response.data)
             if (response.data.success==false){
                 setError(response.data.message)

@@ -101,7 +101,7 @@ export default function NoviceRecipeRecs() {
             setJobs(updatedJobs);
     
             // Send the update to the backend
-           const response= await axios.put(apiRoutes.job.individualBookmarks, {
+           const response= await api.put(apiRoutes.job.individualBookmarks, {
                 userId,
                 jobId: jobToUpdate._id,
                 isBookmarked: !jobToUpdate.isBookmarked,

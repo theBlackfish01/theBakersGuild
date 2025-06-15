@@ -22,6 +22,7 @@ import {
     Avatar,
     Alert,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function RecipeApplications({ job }) {
     const [activeTab, setActiveTab] = useState("All");
@@ -42,7 +43,7 @@ export default function RecipeApplications({ job }) {
             // console.log("IN Fetch Applicants Function")
             try {
                 setLoading(true);
-                const response = await axios.get(apiRoutes.job.getJobApplicants, {
+                const response = await api.get(apiRoutes.job.getJobApplicants, {
                     params: { jobId: job._id },
                 });
                 setApplicants({

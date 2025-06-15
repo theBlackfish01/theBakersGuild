@@ -30,6 +30,7 @@ import closeTheJobIcon from "../assets/closeTheJobIcon.svg";
 
 // Routes Import
 import { apiRoutes, clientRoutes } from "../routes";
+import api from "../lib/api.js";
 
 // Function to calculate time ago
 const calculateTimeAgo = (date) => {
@@ -83,7 +84,7 @@ const BakerRecipeCard = ({
             myJob.isPinned = !myJob.isPinned;
             myJob.pinnedAt = myJob.isPinned ? Date.now() : null;
 
-            const response = await axios.patch(
+            const response = await api.patch(
                 apiRoutes.company.updateBookmark,
                 {
                     userId: userId,
@@ -127,7 +128,7 @@ const BakerRecipeCard = ({
         setError(null);
 
         try {
-            const response = await axios.patch(apiRoutes.job.close, {
+            const response = await api.patch(apiRoutes.job.close, {
                 userId: userId,
                 myJobId: myJob._id,
                 jobId: myJob.job._id,

@@ -9,6 +9,7 @@ import Footer from "../../components/Footer";
 import axios from "axios";
 import { apiRoutes } from "../../routes";
 import { useLocation, useNavigate } from "react-router-dom";
+import api from "../../lib/api.js";
 
 const JobPostPage = () => {
     const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ const JobPostPage = () => {
     const fetchApplicants = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(apiRoutes.company.getApplicants, {
+            const response = await api.get(apiRoutes.company.getApplicants, {
                 params: { jobId },
             }); // Make a request to your backend API
             console.log("Data that : ", response);

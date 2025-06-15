@@ -38,6 +38,7 @@ import {
     DialogTitle,
     DialogContent,
 } from "@mui/joy";
+import api from "../lib/api.js";
 
 export default function ApplicantCardNew({ applicant , jobId }) {
     const [status, setStatus] = useState(applicant.status || "Applied");
@@ -73,7 +74,7 @@ export default function ApplicantCardNew({ applicant , jobId }) {
             setShortlisted((prevShortlisted) => !prevShortlisted);
     
             // Make the API call to update the shortlist status
-           const response =  await axios.put(apiRoutes.job.updateToggleStatus, { jobId, devId: applicant.applicant._id, shortlisted: !shortlisted });
+           const response =  await api.put(apiRoutes.job.updateToggleStatus, { jobId, devId: applicant.applicant._id, shortlisted: !shortlisted });
 
            console.log("Response: ",response)
         } catch (error) {
@@ -90,7 +91,7 @@ export default function ApplicantCardNew({ applicant , jobId }) {
         try {
             // Send API call to send offer
             console.log("Dev ID: ",applicant.applicant._id)
-            const response = await axios.post(apiRoutes.job.sendJobOffer, { jobId  , devId : applicant.applicant._id });
+            const response = await api.post(apiRoutes.job.sendJobOffer, { jobId  , devId : applicant.applicant._id });
             console.log("Response: ",response)
             // Update status and close modal on successful offer
             setStatus("Offer Sent");
