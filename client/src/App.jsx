@@ -93,4 +93,4 @@ function App() {
       </CssVarsProvider>
   );
 }
-export default App;App;
+export default App;
