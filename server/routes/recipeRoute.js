@@ -1,37 +1,18 @@
-const express = require("express");
-const jobRouter = express.Router();
-const cors = require("cors");
-const {
-  createJob,
-  getAllJobs,
-  getRelatedJobs,
-  individualBookmarks,
-  editJob,
-  closeJob,
-  deleteJob,
-  updateBookmarks,
-  deleteApplicants,
-  acceptOffer,
-  rejectOffer,
-  getJobApplicants,
-  sendJobOffer,
-  shortlistToggle
-  
-} = require("../controllers/recipeController");
+// ────────────────────────────
+// File: server/routes/recipeRoute.js
+// ────────────────────────────
+const router = require("express").Router();
+const C      = require("../controllers/recipeController");
+const guard  = require("../middlewares/auth");
 
-jobRouter.post("/create", createJob);
-jobRouter.get("/all", getAllJobs);
-jobRouter.get("/related",getRelatedJobs)
-jobRouter.patch("/edit", editJob);
-jobRouter.patch("/close", closeJob);
-jobRouter.delete("/delete", deleteJob);
-jobRouter.delete("/deleteApplicant", deleteApplicants)
-jobRouter.put("/updateBookmarks",updateBookmarks)
-jobRouter.put("/toggleStatus",shortlistToggle)
-jobRouter.put("/individualBookmarks",individualBookmarks)
-jobRouter.post("/acceptOffer",acceptOffer)
-jobRouter.post("/rejectOffer",rejectOffer)
-jobRouter.get("/getJobApplicants",getJobApplicants)
-jobRouter.post("/sendJobOffer",sendJobOffer)
+/* public */
+router.get("/",       C.list);
+router.get("/:id",    C.read);
 
-module.exports = jobRouter;
+/* baker-only */
+router.get("/mine",   guard, C.mine);          //  ← NEW
+router.post("/",      guard, C.create);
+router.patch("/:id",  guard, C.update);
+router.delete("/:id", guard, C.remove);
+
+module.exports = router

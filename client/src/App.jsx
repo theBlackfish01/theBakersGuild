@@ -1,27 +1,17 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
-
-import { clientRoutes } from "./routes.js";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
-import BakerProfileSetup from "./pages/baker/BakerProfileSetup.jsx";
-import NoviceProfileSetup from "./pages/novice/NoviceProfileSetup.jsx";
-import BakerDashboard from "./pages/baker/BakerDashboard.jsx";
-import NoviceDashboard from "./pages/novice/NoviceDashboard.jsx";
-import PostARecipe from "./pages/baker/PostARecipe.jsx";
-import SearchRecipes from "./pages/SearchRecipes.jsx";
-import NoviceIndividualRecipe from "./pages/novice/NoviceIndividualRecipe.jsx";
-import NoviceSettings from "./pages/novice/NoviceSettings.jsx";
-import BakerSettings from "./pages/baker/BakerSettings.jsx";
-import JobPostPage from "./pages/baker/BakerIndividualJob.jsx";
-import BakerIndividualRecipeNew from "./pages/baker/BakerIndividualRecipeNew.jsx";
+import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 import { useAuthContext } from "./components/useAuthContext.jsx";
 
-import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
-import api from "./lib/api.js";                         /* ← use wrapper */
+import Signup from "./pages/Signup.jsx";
+import Login  from "./pages/Login.jsx";
+import SearchRecipes from "./pages/SearchRecipes.jsx";
+import PostRecipe     from "./pages/baker/PostRecipe.jsx";
+import BakerDashboard from "./pages/baker/BakerDashboard.jsx";
+import RequireAuth    from "./components/RequireAuth.jsx";
+import { clientRoutes } from "./routes.js";
 
 
-const newTheme = extendTheme({
+const theme = extendTheme({
   colorSchemes: {
     dark: {
       palette: {
@@ -59,38 +49,26 @@ const newTheme = extendTheme({
 });
 
 
-function App() {
-  const { user, dispatch } = useAuthContext();
-
-  useEffect(() => {
-    if (!user) {
-      api.post("/user/guest")
-          .then(({ data }) =>
-              dispatch({ type:"LOGIN", payload:data }))
-          .catch((err) => console.error("Guest login failed:", err));
-    }
-  }, [user, dispatch]);
+export default function App() {
+  const { baker } = useAuthContext();
 
   return (
-      <CssVarsProvider theme={newTheme}>
+      <CssVarsProvider theme={theme} defaultMode="light">
         <BrowserRouter>
           <Routes>
-            {!user && (
-                <>
-                  <Route path={clientRoutes.signup} element={<Signup />} />
-                  <Route path={clientRoutes.login} element={<Login />} />
-                  <Route path="*" element={<Navigate to={clientRoutes.login} />} />
-                </>
-            )}
+            {/* Public */}
+            <Route path={clientRoutes.home} element={<SearchRecipes />} />
+            <Route path={clientRoutes.signup} element={baker ? <Navigate to={clientRoutes.home}/> : <Signup />} />
+            <Route path={clientRoutes.login}  element={baker ? <Navigate to={clientRoutes.home}/> : <Login />} />
 
-            {user && (
-                <>
-                  {/* routes unchanged */}
-                </>
-            )}
+            {/* Baker‑only */}
+            <Route path={clientRoutes.postRecipe} element={<RequireAuth><PostRecipe/></RequireAuth>} />
+            <Route path={clientRoutes.bakerDashboard} element={<RequireAuth><BakerDashboard/></RequireAuth>} />
+
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to={clientRoutes.home} replace />} />
           </Routes>
         </BrowserRouter>
       </CssVarsProvider>
   );
 }
-export default App;

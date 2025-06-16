@@ -1,23 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const cors = require("cors");
-const {
-    registerUser,
-    loginUser,
-    getUser,
-    editUser,
-    changePassword,
-    deleteUser,
-    loginGuest
-} = require("../controllers/userController");
+// ────────────────────────────
+// File: server/routes/authRoute.js
+// ────────────────────────────
+const router = require("express").Router();
+const C      = require("../controllers/authController");
+const guard  = require("../middlewares/auth");
 
-// All the routes defined
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.get("/getUser", getUser);
-router.patch("/editUser", editUser);
-router.patch("/changePassword", changePassword);
-router.delete("/deleteUser", deleteUser);
-router.post("/guest", loginGuest);
+/* /auth */
+router.post("/register", C.register);
+router.post("/login",    C.login);
+router.get("/me", guard, C.me);
+router.post("/logout",   C.logout);
 
 module.exports = router;

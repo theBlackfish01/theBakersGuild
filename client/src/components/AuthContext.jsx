@@ -1,38 +1,41 @@
-import { createContext, useReducer, useEffect , useState} from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const authReducer = (state, action) => {
+function reducer(state, action) {
     switch (action.type) {
         case "LOGIN":
-            return { user: action.payload };
+            return { baker: action.payload.baker };
         case "LOGOUT":
-            return { user: null };
+            return { baker: null };
         default:
             return state;
     }
-};
+}
 
-export const AuthContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, { user: null });
-    const [loading, setLoading] = useState(true);
+export function AuthContextProvider({ children }) {
+    const [state, dispatch] = useReducer(reducer, { baker: null });
+    const [boot, setBoot] = useState(true);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (user) {
-            dispatch({ type: "LOGIN", payload: user });
-        }
-        setLoading(false); // Add this line
+        (async () => {
+            try {
+                const { data } = await api.get(apiRoutes.auth.me); // <-- calls /auth/me
+                dispatch({ type: "LOGIN", payload: { baker: data.baker } });
+                localStorage.setItem("baker", JSON.stringify(data.baker)); // optional cache
+            } catch {
+                /* not logged in or token expired – ignore silently */
+            } finally {
+                setBoot(false);            // render children when check completes
+            }
+        })();
     }, []);
 
-    if (loading) { // Add this block
-        return <div>Loading...</div>; // Replace this with your loading indicator
-    }
 
-
+    if (boot) return null; // or a spinner
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
             {children}
         </AuthContext.Provider>
     );
-};
+}

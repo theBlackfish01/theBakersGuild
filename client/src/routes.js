@@ -1,69 +1,25 @@
-import JobPost from "./pages/baker/BakerIndividualJob.jsx";
-
-const apiRoutes = {
-  // User Routes
-  user: {
-    register: "/user/register",
-    login: "/user/login",
-    getUser: "/user/getUser",
-    changePassword: "/user/changePassword",
-    delete: "/user/deleteUser"
+export const apiRoutes = {
+  auth: {
+    register: "/auth/register",
+    login: "/auth/login",
+    me: "/auth/me",
+    logout: "/auth/logout",
   },
-
-  // Job Routes
-  job: {
-    create: "/job/create",
-    getAll: "/job/all",
-    getRelatedJobs: "/job/related",
-    getAllApplicants: "/job/allApplicants",
-    edit: "/job/edit",
-    close: "/job/close",
-    delete: "/job/delete",
-    deleteApplicant: "/job/deleteApplicant",
-    updateBookmarks: "/job/updateBookmarks",
-    individualBookmarks:"/job/individualBookmarks",
-    acceptOffer:"/job/acceptOffer",
-    rejectOffer: "/job/rejectOffer",
-    getJobApplicants: "/job/getJobApplicants",
-    sendJobOffer:"/job/sendJobOffer",
-    updateToggleStatus:"/job/toggleStatus"
-  },
-
-  // Developer Routes
-  dev: {
-    register: "/novice/profileSetup",
-    edit: "/novice/profileEdit",
-    application: "/novice/application",
-    getProfile: "/novice/getProfile",
-    delete: "/novice/deleteDev"
-  },
-
-  // Company Routes
-  company: {
-    register: "/baker/profileSetup",
-    edit: "/baker/profileEdit",
-    getMyJobs: (userId) => `/company/myJobs/${userId}`,
-    updateBookmark: "/baker/bookmark",
-    getProfile: "/baker/getProfile",
-    delete: "/baker/deleteCompany",
-    getApplicants: "/baker/getApplicants",
+  recipes: {
+    list: "/recipes",                 // GET — public feed
+    mine: "/recipes/mine",         // GET — baker dashboard
+    single: (id) => `/recipes/${id}`,   // GET — public
+    create: "/recipes",               // POST — baker‑only
+    update: (id) => `/recipes/${id}`,   // PATCH — baker‑only
+    delete: (id) => `/recipes/${id}`,   // DELETE — baker‑only
   },
 };
 
-// Client-Side Navigation (React Router Routes)
-const clientRoutes = {
-  signup: "/",
+export const clientRoutes = {
+  home: "/",                 // SearchRecipes
+  signup: "/signup",
   login: "/login",
-  companyProfileSetup: "/baker/profileSetup",
-  devProfileSetup: "/novice/profileSetup",
-  companyDashboard: "/baker/dashboard",
-  devDashboard: "/novice/dashboard",
-  postAJob: "/postAJob",
-  searchJobs: "/novice/search",
-  devSettings: "/novice/settings",
-  companySettings: "/baker/settings",
-  devIndividualJob: "/novice/job",
-  companyIndividualJob:"/baker/job"
+  bakerDashboard: "/baker/dashboard",
+  postRecipe: "/baker/post",
+  recipe: (id) => `/recipe/${id}`,      // optional detail page
 };
-
-export { apiRoutes, clientRoutes };
