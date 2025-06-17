@@ -9,6 +9,8 @@ import PostRecipe     from "./pages/baker/PostRecipe.jsx";
 import BakerDashboard from "./pages/baker/BakerDashboard.jsx";
 import RequireAuth    from "./components/RequireAuth.jsx";
 import { clientRoutes } from "./routes.js";
+import EditRecipe from "./pages/baker/EditRecipe.jsx";
+import RecipeDetail from "./pages/RecipeDetail.jsx";
 
 
 const theme = extendTheme({
@@ -64,7 +66,8 @@ export default function App() {
             {/* Baker‑only */}
             <Route path={clientRoutes.postRecipe} element={<RequireAuth><PostRecipe/></RequireAuth>} />
             <Route path={clientRoutes.bakerDashboard} element={<RequireAuth><BakerDashboard/></RequireAuth>} />
-
+            <Route path="/recipe/:id" element={<RecipeDetail/>} />
+            <Route path="/baker/edit/:id" element={<RequireAuth><EditRecipe/></RequireAuth>} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to={clientRoutes.home} replace />} />
           </Routes>

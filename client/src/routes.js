@@ -1,3 +1,8 @@
+// client/src/routes.js
+
+// ----------------------
+// API endpoints your front‑end calls
+// ----------------------
 export const apiRoutes = {
   auth: {
     register: "/auth/register",
@@ -6,20 +11,30 @@ export const apiRoutes = {
     logout: "/auth/logout",
   },
   recipes: {
-    list: "/recipes",                 // GET — public feed
-    mine: "/recipes/mine",         // GET — baker dashboard
-    single: (id) => `/recipes/${id}`,   // GET — public
-    create: "/recipes",               // POST — baker‑only
-    update: (id) => `/recipes/${id}`,   // PATCH — baker‑only
-    delete: (id) => `/recipes/${id}`,   // DELETE — baker‑only
+    list: "/recipes",          // GET  – public feed with ?q=&page=
+    mine: "/recipes/mine",     // GET  – baker dashboard
+    single: (id) => `/recipes/${id}`, // GET  – public detail
+    create: "/recipes",        // POST – baker‑only
+    update: (id) => `/recipes/${id}`,  // PATCH – baker‑only
+    delete: (id) => `/recipes/${id}`,  // DELETE – baker‑only
+  },
+  upload: {
+    image: "/upload",          // POST multipart/form‑data – image upload
   },
 };
 
+// ----------------------
+// Client‑side (react‑router) paths
+// ----------------------
 export const clientRoutes = {
-  home: "/",                 // SearchRecipes
+  // public
+  home: "/",                   // <SearchRecipes />
   signup: "/signup",
   login: "/login",
+  recipe: (id) => `/recipe/${id}`,      // <RecipeDetail />
+
+  // baker‑protected
   bakerDashboard: "/baker/dashboard",
   postRecipe: "/baker/post",
-  recipe: (id) => `/recipe/${id}`,      // optional detail page
+  editRecipe: (id) => `/baker/edit/${id}`, // <EditRecipe />
 };

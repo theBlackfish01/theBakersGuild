@@ -1,37 +1,39 @@
-// ────────────────────────────
-// File: server/app.js
-// Core Express app (local + Vercel)
-// ────────────────────────────
-const express       = require("express");
-const mongoose      = require("mongoose");
-const cors          = require("cors");
-const cookieParser  = require("cookie-parser");
+// server/app.js
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
-const authRouter    = require("./routes/authRoute");
-const recipeRouter  = require("./routes/recipeRoute");
+const authRouter = require("./routes/authRoute");
+const recipeRouter = require("./routes/recipeRoute");
+const uploadRouter = require("./routes/uploadRoute");
 const { errorMiddleware } = require("./middlewares/Error");
 
 const app = express();
 
-/* global middleware */
+app.use(helmet());
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: (process.env.FRONTEND_URL ?? "").split(",").map(s => s.trim()),
-        methods: ["GET","POST","PATCH","DELETE"],
+        origin: process.env.CORS_ORIGINS.split(",").map((s) => s.trim()),
+        methods: ["GET", "POST", "PATCH", "DELETE"],
         credentials: true,
     })
 );
 
 /* routes */
-app.use("/auth",    authRouter);   // register / login Bakers
-app.use("/recipes", recipeRouter); // public browsable, auth-protected mutations
+app.use("/auth", authRouter);
+app.use("/recipes", recipeRouter);
+app.use("/upload", uploadRouter);
 
 app.use(errorMiddleware);
 
-/* shared Mongo connection (lambda-safe) */
+/* shared Mongo connection (lambda‑safe) */
 let cached = null;
 async function connectDB() {
     if (cached) return;
