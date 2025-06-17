@@ -15,7 +15,7 @@ import {
 import logo from "../assets/logo.png";
 import { clientRoutes } from "../routes.js";
 import { useAuthContext } from "./useAuthContext.jsx";
-import useLogout from "../hooks/useLogout.js";
+import useLogout from "../hooks/useLogout.jsx";
 
 export default function Navbar() {
     const navigate = useNavigate();
