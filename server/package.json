@@ -4,5 +4,13 @@
     "private": true,
     "scripts": {
         "dev": "nodemon local.js"
+    },
+    "dependencies": {
+        "cloudinary": "^1.41.3",
+        "express-rate-limit": "^7.5.0",
+        "express-validator": "^7.2.1",
+        "helmet": "^8.1.0",
+        "multer": "^2.0.1",
+        "multer-storage-cloudinary": "^4.0.0"
     }
 }
