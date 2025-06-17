@@ -2,37 +2,27 @@
 import React from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import {
-    Box,
-    Button,
-    Dropdown,
-    Menu,
-    MenuButton,
-    MenuItem,
-    Stack,
-    Avatar,
+    Box, Button, Dropdown, Menu, MenuButton, MenuItem, Stack, Avatar,
 } from "@mui/joy";
 
 import logo from "../assets/logo.png";
 import { clientRoutes } from "../routes.js";
 import { useAuthContext } from "./useAuthContext.jsx";
-import useLogout from "../hooks/useLogout.jsx";
+import useLogout from "../hooks/useLogout.js";
 
 export default function Navbar() {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate  = useNavigate();
+    const location  = useLocation();
     const { baker } = useAuthContext();
-    const logout = useLogout();
 
-    // active tab color helper
-    const active = (pathOrFn) => {
-        const path = typeof pathOrFn === "function" ? pathOrFn() : pathOrFn;
-        return location.pathname.startsWith(path) ? "primary" : "neutral";
-    };
+    // Call logout hook only when we actually need it
+    const logout = baker ? useLogout() : null;
 
-    const handleLogo = () => {
-        navigate(clientRoutes.home);
-        window.scrollTo(0, 0);
-    };
+    // active-tab helper
+    const active = (to) =>
+        location.pathname.startsWith(typeof to === "function" ? to() : to)
+            ? "primary"
+            : "neutral";
 
     return (
         <Box
@@ -43,7 +33,7 @@ export default function Navbar() {
                 alignItems: "center",
                 px: 4,
                 py: 2,
-                borderBottom: "1px solid rgba(0,0,0,0.07)",
+                borderBottom: "1px solid rgba(0,0,0,.07)",
                 backgroundColor: "#f9f5f0",
                 position: "sticky",
                 top: 0,
@@ -55,7 +45,7 @@ export default function Navbar() {
                 alt="Bakers Guild"
                 width={110}
                 style={{ cursor: "pointer" }}
-                onClick={handleLogo}
+                onClick={() => navigate(clientRoutes.home)}
             />
 
             <Stack direction="row" spacing={2} alignItems="center">
@@ -67,6 +57,7 @@ export default function Navbar() {
                 >
                     Recipes
                 </Button>
+
                 {baker && (
                     <>
                         <Button
@@ -111,8 +102,8 @@ export default function Navbar() {
                     <>
                         <Button
                             size="sm"
-                            color="primary"
                             variant="soft"
+                            color="primary"
                             component={Link}
                             to={clientRoutes.login}
                         >
