@@ -5,7 +5,7 @@ import RecipeCard from "../components/RecipeCard.jsx";
 import useRecipes from "../hooks/useRecipes.js";
 import debounce from "lodash-es/debounce";
 import { Stack, Grid, Typography, Input, Alert } from "@mui/joy";
-import Pagination from "@mui/joy/Pagination";
+import Pagination from "@mui/material/Pagination";
 
 
 export default function SearchRecipes() {
