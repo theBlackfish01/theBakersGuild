@@ -11,6 +11,7 @@ import RequireAuth    from "./components/RequireAuth.jsx";
 import { clientRoutes } from "./routes.js";
 import EditRecipe from "./pages/baker/EditRecipe.jsx";
 import RecipeDetail from "./pages/RecipeDetail.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 
 const theme = extendTheme({
@@ -58,6 +59,7 @@ export default function App() {
       <CssVarsProvider theme={theme} defaultMode="light">
         <BrowserRouter>
           <Routes>
+            <Navbar />
             {/* Public */}
             <Route path={clientRoutes.home} element={<SearchRecipes />} />
             <Route path={clientRoutes.signup} element={baker ? <Navigate to={clientRoutes.home}/> : <Signup />} />
