@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { AuthContextProvider } from "./components/AuthContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ErrorBoundary from "./components/ErrorBoundary.js";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 
 const queryClient = new QueryClient();
 
