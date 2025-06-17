@@ -1,8 +1,15 @@
 // client/src/components/Navbar.jsx
 import React from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    Box, Button, Dropdown, Menu, MenuButton, MenuItem, Stack, Avatar,
+    Box,
+    Stack,
+    Button,
+    Dropdown,
+    Menu,
+    MenuButton,
+    MenuItem,
+    Avatar,
 } from "@mui/joy";
 
 import logo from "../assets/logo.png";
@@ -11,19 +18,24 @@ import { useAuthContext } from "./useAuthContext.jsx";
 import useLogout from "../hooks/useLogout.js";
 
 export default function Navbar() {
+    /* ──────── Hooks (ALWAYS in the same order) ──────── */
     const navigate  = useNavigate();
     const location  = useLocation();
     const { baker } = useAuthContext();
+    const logout    = useLogout();             // ← always called
 
-    // Call logout hook only when we actually need it
-    const logout = baker ? useLogout() : null;
+    /* ──────── Helpers ──────── */
+    const active = (pathOrFn) => {
+        const path = typeof pathOrFn === "function" ? pathOrFn() : pathOrFn;
+        return location.pathname.startsWith(path) ? "primary" : "neutral";
+    };
 
-    // active-tab helper
-    const active = (to) =>
-        location.pathname.startsWith(typeof to === "function" ? to() : to)
-            ? "primary"
-            : "neutral";
+    const goHome = () => {
+        navigate(clientRoutes.home);
+        window.scrollTo(0, 0);
+    };
 
+    /* ──────── UI ──────── */
     return (
         <Box
             component="header"
@@ -40,14 +52,16 @@ export default function Navbar() {
                 zIndex: 20,
             }}
         >
+            {/* logo */}
             <img
                 src={logo}
                 alt="Bakers Guild"
                 width={110}
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate(clientRoutes.home)}
+                onClick={goHome}
             />
 
+            {/* nav buttons */}
             <Stack direction="row" spacing={2} alignItems="center">
                 <Button
                     variant="plain"
@@ -66,7 +80,7 @@ export default function Navbar() {
                             component={Link}
                             to={clientRoutes.bakerDashboard}
                         >
-                            My Recipes
+                            My&nbsp;Recipes
                         </Button>
                         <Button
                             variant="plain"
@@ -79,6 +93,7 @@ export default function Navbar() {
                     </>
                 )}
 
+                {/* right-side actions */}
                 {baker ? (
                     <Dropdown>
                         <MenuButton
@@ -115,7 +130,7 @@ export default function Navbar() {
                             component={Link}
                             to={clientRoutes.signup}
                         >
-                            Sign up
+                            Sign&nbsp;up
                         </Button>
                     </>
                 )}
