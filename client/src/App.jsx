@@ -58,8 +58,8 @@ export default function App() {
   return (
       <CssVarsProvider theme={theme} defaultMode="light">
         <BrowserRouter>
+          <Navbar />
           <Routes>
-            <Navbar />
             {/* Public */}
             <Route path={clientRoutes.home} element={<SearchRecipes />} />
             <Route path={clientRoutes.signup} element={baker ? <Navigate to={clientRoutes.home}/> : <Signup />} />
