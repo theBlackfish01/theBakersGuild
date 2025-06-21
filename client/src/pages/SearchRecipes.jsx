@@ -1,6 +1,6 @@
 // client/src/pages/SearchRecipes.jsx
 import { useState } from "react";
-import searchIcon from "../assets/jobSearchIcon.svg";
+import searchIcon from "../assets/searchIcon.svg";
 import RecipeCard from "../components/RecipeCard.jsx";
 import useRecipes from "../hooks/useRecipes.js";
 import debounce from "lodash-es/debounce";
